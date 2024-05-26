@@ -36,8 +36,8 @@
     },
     "autoload": {
         "psr-4": {
-            "OxidEsales\\ModuleTemplate\\": "src/",
-            "OxidEsales\\ModuleTemplate\\Tests\\": "tests/"
+            "FreshAdvance\\NutritionFacts\\": "./src",
+            "FreshAdvance\\NutritionFacts\\Tests\\": "./tests"
         }
     },
     "scripts": {

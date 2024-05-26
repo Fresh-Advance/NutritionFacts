@@ -1,0 +1,22 @@
+{% include "headitem.html.twig" with {title: "GENERAL_ADMIN_TITLE"|translate} %}
+
+<form name="transfer" id="transfer" action="{{ oViewConf.getSelfLink() }}" method="post">
+    {{ oViewConf.getHiddenSid()|raw }}
+    <input type="hidden" name="oxid" value="{{ oxid }}">
+    <input type="hidden" name="cl" value="fa_nutrition_facts_admin">
+</form>
+
+<form action="{{ oViewConf.getSelfLink() }}" method="POST">
+    {{ oViewConf.getHiddenSid()|raw }}
+
+    <input type="hidden" name="oxid" value="{{ oxid }}">
+    <input type="hidden" name="cl" value="fa_nutrition_facts_admin">
+    <input type="hidden" name="fnc" value="saveData">
+
+    <input type="hidden" name="nutrition_facts[product_id]" value="{{ oxid }}">
+    <div><textarea name="nutrition_facts[xxx]">some value</textarea></div>
+    <div><input type="submit" name="saveData" value="{{ translate({ ident: "some button" }) }}"></div>
+</form>
+
+{% include "bottomnaviitem.html.twig" %}
+{% include "bottomitem.html.twig" %}

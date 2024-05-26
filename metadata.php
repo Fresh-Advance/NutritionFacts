@@ -27,6 +27,7 @@ $aModule = [
     'email' => 'anton@fedurtsya.com',
     'url' => 'https://github.com/Fresh-Advance',
     'controllers' => [
+        'fa_nutrition_facts_admin' => \FreshAdvance\NutritionFacts\Admin\Controller\NutritionFactsController::class,
     ],
     'extend' => [
     ],
