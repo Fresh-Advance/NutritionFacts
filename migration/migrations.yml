@@ -1,0 +1,4 @@
+table_storage:
+  table_name: oxmigrations_fa_nutrition_facts
+migrations_paths:
+  'FreshAdvance\NutritionFacts\Migrations': data
