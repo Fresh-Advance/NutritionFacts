@@ -1,0 +1,20 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+    bind:
+      OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\NutritionFacts\\Core\\Registry").getRequest()'
+
+  FreshAdvance\NutritionFacts\Admin\Service\FactsServiceInterface:
+    class: FreshAdvance\NutritionFacts\Admin\Service\FactsService
+    arguments:
+      FreshAdvance\NutritionFacts\Serializer\FactsSerializerInterface: '@FreshAdvance\NutritionFacts\Serializer\YamlSerializer'
+    public: true
+
+  FreshAdvance\NutritionFacts\Admin\Transput\FactsEditRequestInterface:
+    class: FreshAdvance\NutritionFacts\Admin\Transput\FactsEditRequest
+    public: true
+
+  FreshAdvance\NutritionFacts\Admin\Transput\FactsUIRequestInterface:
+    class: FreshAdvance\NutritionFacts\Admin\Transput\FactsUIRequest
+    public: true

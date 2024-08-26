@@ -13,15 +13,7 @@
     <input type="hidden" name="cl" value="fa_nutrition_facts_admin">
     <input type="hidden" name="fnc" value="saveData">
 
-    <input type="hidden" name="nutrition_facts[product_id]" value="{{ oxid }}">
-    <div>Energy: <input type="text" name="nutrition_facts[ri_energy]"></div>
-    <div>Total fat: <input type="text" name="nutrition_facts[ri_total_fat]"></div>
-    <div>Saturates: <input type="text" name="nutrition_facts[ri_saturates]"></div>
-    <div>Carbohydrates: <input type="text" name="nutrition_facts[ri_carbohydrates]"></div>
-    <div>Sugars: <input type="text" name="nutrition_facts[ri_sugars]"></div>
-    <div>Protein: <input type="text" name="nutrition_facts[ri_protein]"></div>
-    <div>Salt: <input type="text" name="nutrition_facts[ri_salt]"></div>
-
+    <textarea rows="25" cols="120" name="facts">{{ nutrition_facts }}</textarea>
     <div><input type="submit" name="saveData" value="{{ translate({ ident: "some button" }) }}"></div>
 </form>
 
