@@ -1,0 +1,12 @@
+imports:
+    - { resource: src/Admin/services.yaml }
+    - { resource: src/services.yaml }
+
+services:
+    _defaults:
+        public: false
+        autowire: true
+
+    FreshAdvance\NutritionFacts\Core\Registry:
+        class: OxidEsales\Eshop\Core\Registry
+        public: true
