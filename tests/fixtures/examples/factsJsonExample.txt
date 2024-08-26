@@ -1,0 +1,1 @@
+{"key1":{"product":"product1","facts":{"fact11":"value11","fact12":"value12"}},"key2":{"product":"product2","facts":{"fact21":"value21","fact22":"value22"}}}
