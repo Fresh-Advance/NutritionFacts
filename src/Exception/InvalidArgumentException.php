@@ -11,5 +11,4 @@ namespace FreshAdvance\NutritionFacts\Exception;
 
 class InvalidArgumentException extends \InvalidArgumentException
 {
-
 }

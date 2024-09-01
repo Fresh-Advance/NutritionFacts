@@ -93,8 +93,7 @@ class FactsServiceTest extends TestCase
     public function getSut(
         FactsSerializerInterface $factsSerializer = null,
         FactsRepositoryInterface $factsRepository = null,
-    ): FactsServiceInterface
-    {
+    ): FactsServiceInterface {
         return new FactsService(
             factsSerializer: $factsSerializer ?? $this->createStub(FactsSerializerInterface::class),
             factsRepository: $factsRepository ?? $this->createStub(FactsRepositoryInterface::class),

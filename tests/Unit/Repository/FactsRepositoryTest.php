@@ -77,8 +77,7 @@ class FactsRepositoryTest extends TestCase
     public function getSut(
         FactsDataAccessInterface $dataAccess = null,
         FactsSerializerInterface $serializer = null,
-    ): FactsRepository
-    {
+    ): FactsRepository {
         return new FactsRepository(
             dataAccess: $dataAccess ?? $this->createStub(FactsDataAccessInterface::class),
             serializer: $serializer ?? $this->createStub(FactsSerializerInterface::class)
