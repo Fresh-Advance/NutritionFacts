@@ -47,7 +47,7 @@ sonarcloud:
   matrix:
     testplan: '["-"]'
   strip_path: '/var/www/vendor/fresh-advance/nutrition-facts/'
-  project_name: 'Nutrition Facts'
+  project_name: 'NutritionFacts'
   project_key: 'Fresh-Advance_NutritionFacts'
   organization: 'fresh-advance'
   parameters: |
