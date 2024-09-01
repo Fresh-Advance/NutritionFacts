@@ -31,12 +31,13 @@ class FactsUIRequestTest extends TestCase
         $this->assertSame($exampleProductId, $sut->getProductId());
     }
 
-    public function testGetProductIdException(): void
+    /** @dataProvider wrongProductIdValuesDataProvider */
+    public function testGetProductIdWithWrongDataThrowsException(mixed $value): void
     {
         $requestMock = $this->createStub(Request::class);
         $requestMock->method('getRequestParameter')
             ->with(FactsUIRequest::REQUEST_KEY_PRODUCT_ID)
-            ->willReturn(null);
+            ->willReturn($value);
 
         $sut = new FactsUIRequest(
             shopRequest: $requestMock
@@ -44,5 +45,16 @@ class FactsUIRequestTest extends TestCase
 
         $this->expectException(MissingRequestParameter::class);
         $sut->getProductId();
+    }
+
+    public function wrongProductIdValuesDataProvider(): \Generator
+    {
+        yield 'null' => [
+            'value' => null
+        ];
+
+        yield 'array value' => [
+            'value' => [uniqid()]
+        ];
     }
 }

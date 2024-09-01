@@ -11,6 +11,7 @@ namespace FreshAdvance\NutritionFacts\Tests\Unit\Serializer;
 
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
+use FreshAdvance\NutritionFacts\Exception\UnserializeException;
 use FreshAdvance\NutritionFacts\Serializer\JsonSerializer;
 use PHPUnit\Framework\TestCase;
 
@@ -58,5 +59,37 @@ class JsonSerializerTest extends TestCase
                 ])
             ]
         ]);
+    }
+
+    public function testUnserializeOfEmptyString(): void
+    {
+        $sut = new JsonSerializer();
+
+        $unserialized = $sut->unserialize('');
+
+        $this->assertSame([], $unserialized->getItems());
+    }
+
+    public function testUnserializeOfBadData(): void
+    {
+        $sut = new JsonSerializer();
+
+        $this->expectException(UnserializeException::class);
+        $sut->unserialize("someString");
+    }
+
+    public function testUnserializeOfWronglyConfiguredArray(): void
+    {
+        $sut = new JsonSerializer();
+
+        $unserialized = $sut->unserialize('{"someArrayKeyExample": {"id": "1"}}');
+
+        $items = $unserialized->getItems();
+
+        $item = $items['someArrayKeyExample'];
+
+        $this->assertInstanceOf(NutritionFactsInterface::class, $item);
+        $this->assertSame('', $item->getProductId());
+        $this->assertSame([], $item->getFacts());
     }
 }

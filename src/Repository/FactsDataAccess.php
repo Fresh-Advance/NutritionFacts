@@ -25,7 +25,9 @@ class FactsDataAccess implements FactsDataAccessInterface
             ['productId' => $productId]
         );
 
-        return (string)$result->fetchOne();
+        /** @var string|null $returnResult */
+        $returnResult = $result->fetchOne();
+        return (string)$returnResult;
     }
 
     public function saveFactsData(string $productId, string $factsList): bool

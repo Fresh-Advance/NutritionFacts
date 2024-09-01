@@ -28,12 +28,13 @@ class FactsUIRequest implements FactsUIRequestInterface
 
     protected function getParamOrExplode(string $paramName): string
     {
+        /** @var null|array|string $value */
         $value = $this->shopRequest->getRequestParameter($paramName);
 
-        if ($value === null) {
+        if (!is_string($value)) {
             throw new MissingRequestParameter();
         }
 
-        return (string)$value;
+        return $value;
     }
 }

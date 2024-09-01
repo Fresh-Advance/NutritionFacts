@@ -16,7 +16,7 @@ use FreshAdvance\NutritionFacts\Serializer\FactsSerializerInterface;
 
 class FactsService implements FactsServiceInterface
 {
-    protected $exampleFacts = [
+    protected array $exampleFacts = [
         'fact1' => 'value1',
         'fact2' => 'value2',
     ];

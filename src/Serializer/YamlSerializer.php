@@ -12,6 +12,8 @@ namespace FreshAdvance\NutritionFacts\Serializer;
 use FreshAdvance\NutritionFacts\DataType\NutritionFacts;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsList;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
+use FreshAdvance\NutritionFacts\Exception\UnserializeException;
+use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
 class YamlSerializer implements FactsSerializerInterface
@@ -31,11 +33,19 @@ class YamlSerializer implements FactsSerializerInterface
 
     public function unserialize(string $data): NutritionFactsListInterface
     {
-        $decoded = Yaml::parse($data);
+        try {
+            /** @var iterable $decoded */
+            $decoded = Yaml::parse($data);
+        } catch (ParseException $exception) {
+            throw new UnserializeException($exception->getMessage());
+        }
 
         $items = [];
         foreach ($decoded as $key => $oneItem) {
-            $items[$key] = new NutritionFacts($oneItem['product'], $oneItem['facts']);
+            $items[$key] = new NutritionFacts(
+                productId: $oneItem['product'] ?? '',
+                facts: $oneItem['facts'] && is_array($oneItem['facts']) ? $oneItem['facts'] : []
+            );
         }
 
         return new NutritionFactsList($items);

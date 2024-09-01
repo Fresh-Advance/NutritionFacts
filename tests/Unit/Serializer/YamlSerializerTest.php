@@ -11,7 +11,7 @@ namespace FreshAdvance\NutritionFacts\Tests\Unit\Serializer;
 
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
-use FreshAdvance\NutritionFacts\Serializer\JsonSerializer;
+use FreshAdvance\NutritionFacts\Exception\UnserializeException;
 use FreshAdvance\NutritionFacts\Serializer\YamlSerializer;
 use PHPUnit\Framework\TestCase;
 
@@ -59,5 +59,46 @@ class YamlSerializerTest extends TestCase
                 ])
             ]
         ]);
+    }
+
+    public function testUnserializeOfEmptyString(): void
+    {
+        $sut = new YamlSerializer();
+
+        $unserialized = $sut->unserialize('');
+
+        $this->assertSame([], $unserialized->getItems());
+    }
+
+    public function testUnserializeOfBadData(): void
+    {
+        $sut = new YamlSerializer();
+
+        $this->expectException(UnserializeException::class);
+        $sut->unserialize("xx\nbla\n  -\n[]");
+    }
+
+    public function testUnserializeOfStringGivesEmptyArrayOfItems(): void
+    {
+        $sut = new YamlSerializer();
+
+        $unserialized = $sut->unserialize("someString");
+
+        $this->assertSame([], $unserialized->getItems());
+    }
+
+    public function testUnserializeOfWronglyConfiguredArray(): void
+    {
+        $sut = new YamlSerializer();
+
+        $unserialized = $sut->unserialize("someArrayKeyExample:");
+
+        $items = $unserialized->getItems();
+
+        $item = $items['someArrayKeyExample'];
+
+        $this->assertInstanceOf(NutritionFactsInterface::class, $item);
+        $this->assertSame('', $item->getProductId());
+        $this->assertSame([], $item->getFacts());
     }
 }

@@ -12,6 +12,7 @@ namespace FreshAdvance\NutritionFacts\Serializer;
 use FreshAdvance\NutritionFacts\DataType\NutritionFacts;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsList;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
+use FreshAdvance\NutritionFacts\Exception\UnserializeException;
 
 class JsonSerializer implements FactsSerializerInterface
 {
@@ -25,16 +26,28 @@ class JsonSerializer implements FactsSerializerInterface
             ];
         }
 
-        return json_encode($result);
+        return (string)json_encode($result);
     }
 
     public function unserialize(string $data): NutritionFactsListInterface
     {
-        $decoded = json_decode($data, true);
+        try {
+            /** @var iterable $decoded */
+            $decoded = $data ? json_decode(
+                json: $data,
+                associative: true,
+                flags: JSON_THROW_ON_ERROR
+            ) : [];
+        } catch (\JsonException $exception) {
+            throw new UnserializeException($exception->getMessage());
+        }
 
         $items = [];
         foreach ($decoded as $key => $oneItem) {
-            $items[$key] = new NutritionFacts($oneItem['product'], $oneItem['facts']);
+            $items[$key] = new NutritionFacts(
+                productId: $oneItem['product'] ?? '',
+                facts: $oneItem['facts'] && is_array($oneItem['facts']) ? $oneItem['facts'] : []
+            );
         }
 
         return new NutritionFactsList($items);
