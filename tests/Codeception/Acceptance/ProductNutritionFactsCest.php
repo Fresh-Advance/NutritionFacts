@@ -42,26 +42,21 @@ final class ProductNutritionFactsCest
 
         $nutritionsPage = new NutritionFactsPage($I);
 
-        $fields = [
-            'ri_energy',
-            'ri_total_fat',
-            'ri_saturates',
-            'ri_carbohydrates',
-            'ri_sugars',
-            'ri_protein',
-            'ri_salt',
-        ];
+        $value = <<<BLOCK
+        example:
+          product: productIdExample
+          facts:
+            fact1: value1
+            fact2: value2
+        
+        BLOCK;
 
-        foreach ($fields as $key => $oneField) {
-            $I->fillField(sprintf($nutritionsPage->nutritionFactsField, $oneField), md5($key . $oneField));
-        }
+        $I->fillField($nutritionsPage->nutritionFactsField, $value);
 
         $I->click($nutritionsPage->nutritionFactsSaveButton);
         $I->waitForPageLoad();
-//
-//        foreach ($fields as $key => $oneField) {
-//            $I->seeInField(sprintf($nutritionsPage->nutritionFactsField, $oneField), md5($key.$oneField));
-//        }
+
+        $I->assertSame($value, $I->grabValueFrom($nutritionsPage->nutritionFactsField));
     }
 
     /** @param AcceptanceTester $I */
