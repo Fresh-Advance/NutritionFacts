@@ -15,3 +15,6 @@ services:
 
   FreshAdvance\NutritionFacts\Serializer\JsonSerializer: ~
   FreshAdvance\NutritionFacts\Serializer\YamlSerializer: ~
+
+  FreshAdvance\NutritionFacts\Service\ModuleSettingsServiceInterface:
+    class: FreshAdvance\NutritionFacts\Service\ModuleSettingsService

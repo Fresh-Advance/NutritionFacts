@@ -16,6 +16,7 @@ use FreshAdvance\NutritionFacts\DataType\NutritionFactsList;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
 use FreshAdvance\NutritionFacts\Repository\FactsRepositoryInterface;
 use FreshAdvance\NutritionFacts\Serializer\FactsSerializerInterface;
+use FreshAdvance\NutritionFacts\Service\ModuleSettingsServiceInterface;
 use PHPUnit\Framework\TestCase;
 
 class FactsServiceTest extends TestCase
@@ -49,7 +50,11 @@ class FactsServiceTest extends TestCase
         $sut = $this->getSut(
             factsSerializer: $factsSerializerSpy = $this->createMock(FactsSerializerInterface::class),
             factsRepository: $factsRepository = $this->createMock(FactsRepositoryInterface::class),
+            moduleSettingsService: $moduleSettingsStub = $this->createStub(ModuleSettingsServiceInterface::class),
         );
+
+        $defaultFacts = ['key1' => 'value1', 'key2' => 'value2'];
+        $moduleSettingsStub->method('getDefaultFacts')->willReturn($defaultFacts);
 
         $factsRepository->method('getFactsList')->with($productId)->willReturn(
             $this->createConfiguredMock(NutritionFactsListInterface::class, [
@@ -93,10 +98,12 @@ class FactsServiceTest extends TestCase
     public function getSut(
         FactsSerializerInterface $factsSerializer = null,
         FactsRepositoryInterface $factsRepository = null,
+        ModuleSettingsServiceInterface $moduleSettingsService = null,
     ): FactsServiceInterface {
         return new FactsService(
             factsSerializer: $factsSerializer ?? $this->createStub(FactsSerializerInterface::class),
             factsRepository: $factsRepository ?? $this->createStub(FactsRepositoryInterface::class),
+            moduleSettingsService: $moduleSettingsService ?? $this->createStub(ModuleSettingsServiceInterface::class)
         );
     }
 }
