@@ -30,6 +30,7 @@ $aModule = [
         'fa_nutrition_facts_admin' => \FreshAdvance\NutritionFacts\Admin\Controller\NutritionFactsController::class,
     ],
     'extend' => [
+        \OxidEsales\Eshop\Application\Model\Article::class => \FreshAdvance\NutritionFacts\Extension\Model\Article::class
     ],
     'settings' => [
         [
