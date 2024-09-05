@@ -13,6 +13,10 @@
     <input type="hidden" name="cl" value="fa_nutrition_facts_admin">
     <input type="hidden" name="fnc" value="saveData">
 
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+
     Current product id: <strong>{{ oxid }}</strong><br>
     <textarea rows="25" cols="120" name="facts">{{ nutrition_facts }}</textarea>
     <div><input type="submit" name="saveData" value="{{ translate({ ident: "some button" }) }}"></div>

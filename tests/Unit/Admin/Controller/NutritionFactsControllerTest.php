@@ -61,4 +61,28 @@ class NutritionFactsControllerTest extends TestCase
 
         $sut->saveData();
     }
+
+    public function testSaveMethodError(): void
+    {
+        $editRequestStub = $this->createConfiguredMock(FactsEditRequestInterface::class, [
+            'getProductId' => $productId = uniqid(),
+            'getFactsToSave' => $factsToSave = uniqid(),
+        ]);
+
+        $factsServiceMock = $this->createMock(AdminFactsServiceInterface::class);
+        $factsServiceMock->method('saveNutritionFactsFromRequest')
+            ->with($productId, $factsToSave)->willThrowException(new \Exception($error = uniqid()));
+
+        $sut = $this->createPartialMock(NutritionFactsController::class, ['getServiceFromContainer']);
+        $sut->method('getServiceFromContainer')->willReturnMap([
+            [AdminFactsServiceInterface::class, $factsServiceMock],
+            [FactsEditRequestInterface::class, $editRequestStub]
+        ]);
+
+        $sut->saveData();
+
+        $viewParams = $sut->getViewData();
+        $this->assertSame($viewParams['error'], $error);
+        $this->assertSame($viewParams['nutrition_facts'], $factsToSave);
+    }
 }

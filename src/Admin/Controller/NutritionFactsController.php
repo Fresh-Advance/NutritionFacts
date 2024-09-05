@@ -26,10 +26,13 @@ class NutritionFactsController extends AdminController
         $uiRequest = $this->getServiceFromContainer(FactsUIRequestInterface::class);
         $adminFactsService = $this->getServiceFromContainer(FactsServiceInterface::class);
 
-        $this->addTplParam(
-            'nutrition_facts',
-            $adminFactsService->getProductNutritionFactsForEdit($uiRequest->getProductId())
-        );
+        $viewData = $this->getViewData();
+        if (!$viewData['nutrition_facts']) {
+            $this->addTplParam(
+                'nutrition_facts',
+                $adminFactsService->getProductNutritionFactsForEdit($uiRequest->getProductId())
+            );
+        }
 
         return parent::render();
     }
@@ -39,6 +42,14 @@ class NutritionFactsController extends AdminController
         $editRequest = $this->getServiceFromContainer(FactsEditRequestInterface::class);
         $adminFactsService = $this->getServiceFromContainer(FactsServiceInterface::class);
 
-        $adminFactsService->saveNutritionFactsFromRequest($editRequest->getProductId(), $editRequest->getFactsToSave());
+        try {
+            $adminFactsService->saveNutritionFactsFromRequest($editRequest->getProductId(), $editRequest->getFactsToSave());
+        } catch (\Exception $e) {
+            $this->addTplParam('error', $e->getMessage());
+            $this->addTplParam(
+                'nutrition_facts',
+                $editRequest->getFactsToSave()
+            );
+        }
     }
 }
