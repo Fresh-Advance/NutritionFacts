@@ -12,23 +12,23 @@ namespace FreshAdvance\NutritionFacts\Tests\Unit\Serializer;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
 use FreshAdvance\NutritionFacts\Exception\UnserializeException;
-use FreshAdvance\NutritionFacts\Serializer\YamlSerializer;
+use FreshAdvance\NutritionFacts\Service\FactsSerializerService;
 use PHPUnit\Framework\TestCase;
 
-class YamlSerializerTest extends TestCase
+class FactsSerializerServiceTest extends TestCase
 {
     public function testSerialize(): void
     {
         $listExample = $this->getListExample();
         $expectedResult = $this->getSerializedExample();
 
-        $sut = new YamlSerializer();
+        $sut = new FactsSerializerService();
         $this->assertSame($expectedResult, $sut->serialize($listExample));
     }
 
     public function testUnserlizalize(): void
     {
-        $sut = new YamlSerializer();
+        $sut = new FactsSerializerService();
 
         $unserialized = $sut->unserialize($this->getSerializedExample());
         $items = $unserialized->getItems();
@@ -63,7 +63,7 @@ class YamlSerializerTest extends TestCase
 
     public function testUnserializeOfEmptyString(): void
     {
-        $sut = new YamlSerializer();
+        $sut = new FactsSerializerService();
 
         $unserialized = $sut->unserialize('');
 
@@ -72,7 +72,7 @@ class YamlSerializerTest extends TestCase
 
     public function testUnserializeOfBadData(): void
     {
-        $sut = new YamlSerializer();
+        $sut = new FactsSerializerService();
 
         $this->expectException(UnserializeException::class);
         $sut->unserialize("xx\nbla\n  -\n[]");
@@ -80,7 +80,7 @@ class YamlSerializerTest extends TestCase
 
     public function testUnserializeOfStringGivesEmptyArrayOfItems(): void
     {
-        $sut = new YamlSerializer();
+        $sut = new FactsSerializerService();
 
         $unserialized = $sut->unserialize("someString");
 
@@ -89,7 +89,7 @@ class YamlSerializerTest extends TestCase
 
     public function testUnserializeOfWronglyConfiguredArray(): void
     {
-        $sut = new YamlSerializer();
+        $sut = new FactsSerializerService();
 
         $unserialized = $sut->unserialize("someArrayKeyExample:");
 

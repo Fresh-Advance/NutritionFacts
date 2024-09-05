@@ -7,14 +7,16 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\NutritionFacts\Serializer;
+namespace FreshAdvance\NutritionFacts\Service;
 
 use FreshAdvance\NutritionFacts\DataType\NutritionFacts;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsList;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
 use FreshAdvance\NutritionFacts\Exception\UnserializeException;
+use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Yaml\Yaml;
 
-class JsonSerializer implements FactsSerializerInterface
+class FactsSerializerService implements FactsSerializerServiceInterface
 {
     public function serialize(NutritionFactsListInterface $factsList): string
     {
@@ -26,19 +28,15 @@ class JsonSerializer implements FactsSerializerInterface
             ];
         }
 
-        return (string)json_encode($result);
+        return Yaml::dump($result, 10, 2);
     }
 
     public function unserialize(string $data): NutritionFactsListInterface
     {
         try {
             /** @var iterable $decoded */
-            $decoded = $data ? json_decode(
-                json: $data,
-                associative: true,
-                flags: JSON_THROW_ON_ERROR
-            ) : [];
-        } catch (\JsonException $exception) {
+            $decoded = Yaml::parse($data);
+        } catch (ParseException $exception) {
             throw new UnserializeException($exception->getMessage());
         }
 

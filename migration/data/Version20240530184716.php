@@ -19,7 +19,7 @@ final class Version20240530184716 extends AbstractMigration
         $this->addSql(
             "CREATE TABLE fa_nutrition_facts (
                 product_id VARCHAR(32),
-                nutrition_facts JSON,
+                nutrition_facts LONGTEXT,
                 PRIMARY KEY (product_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8"
         );

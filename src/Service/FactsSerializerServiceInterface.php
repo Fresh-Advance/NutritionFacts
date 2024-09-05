@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace FreshAdvance\NutritionFacts\Serializer;
+namespace FreshAdvance\NutritionFacts\Service;
 
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
 
-interface FactsSerializerInterface
+interface FactsSerializerServiceInterface
 {
     public function serialize(NutritionFactsListInterface $factsList): string;
 

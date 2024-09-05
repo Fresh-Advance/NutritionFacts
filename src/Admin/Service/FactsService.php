@@ -12,13 +12,13 @@ namespace FreshAdvance\NutritionFacts\Admin\Service;
 use FreshAdvance\NutritionFacts\DataType\NutritionFacts;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsList;
 use FreshAdvance\NutritionFacts\Repository\FactsRepositoryInterface;
-use FreshAdvance\NutritionFacts\Serializer\FactsSerializerInterface;
+use FreshAdvance\NutritionFacts\Service\FactsSerializerServiceInterface;
 use FreshAdvance\NutritionFacts\Service\ModuleSettingsServiceInterface;
 
 class FactsService implements FactsServiceInterface
 {
     public function __construct(
-        private FactsSerializerInterface $factsSerializer,
+        private FactsSerializerServiceInterface $factsSerializer,
         private FactsRepositoryInterface $factsRepository,
         private ModuleSettingsServiceInterface $moduleSettingsService,
     ) {

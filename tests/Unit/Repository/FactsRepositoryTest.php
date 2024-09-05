@@ -13,7 +13,7 @@ use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
 use FreshAdvance\NutritionFacts\Repository\FactsDataAccessInterface;
 use FreshAdvance\NutritionFacts\Repository\FactsRepository;
-use FreshAdvance\NutritionFacts\Serializer\FactsSerializerInterface;
+use FreshAdvance\NutritionFacts\Service\FactsSerializerServiceInterface;
 use PHPUnit\Framework\TestCase;
 
 /** @covers \FreshAdvance\NutritionFacts\Repository\FactsRepository */
@@ -39,7 +39,7 @@ class FactsRepositoryTest extends TestCase
 
         $sut = $this->getSut(
             dataAccess: $dataAccessSpy,
-            serializer: $serializerMock = $this->createMock(FactsSerializerInterface::class)
+            serializer: $serializerMock = $this->createMock(FactsSerializerServiceInterface::class)
         );
 
         $nutritionsList = $this->createConfiguredMock(NutritionFactsListInterface::class, [
@@ -62,7 +62,7 @@ class FactsRepositoryTest extends TestCase
 
         $sut = $this->getSut(
             dataAccess: $dataAccessMock,
-            serializer: $serializerMock = $this->createMock(FactsSerializerInterface::class)
+            serializer: $serializerMock = $this->createMock(FactsSerializerServiceInterface::class)
         );
 
         $expectedList = $this->createStub(NutritionFactsListInterface::class);
@@ -76,11 +76,11 @@ class FactsRepositoryTest extends TestCase
      */
     public function getSut(
         FactsDataAccessInterface $dataAccess = null,
-        FactsSerializerInterface $serializer = null,
+        FactsSerializerServiceInterface $serializer = null,
     ): FactsRepository {
         return new FactsRepository(
             dataAccess: $dataAccess ?? $this->createStub(FactsDataAccessInterface::class),
-            serializer: $serializer ?? $this->createStub(FactsSerializerInterface::class)
+            serializer: $serializer ?? $this->createStub(FactsSerializerServiceInterface::class)
         );
     }
 

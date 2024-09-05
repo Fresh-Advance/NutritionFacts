@@ -7,8 +7,6 @@ services:
 
   FreshAdvance\NutritionFacts\Admin\Service\FactsServiceInterface:
     class: FreshAdvance\NutritionFacts\Admin\Service\FactsService
-    arguments:
-      FreshAdvance\NutritionFacts\Serializer\FactsSerializerInterface: '@FreshAdvance\NutritionFacts\Serializer\YamlSerializer'
     public: true
 
   FreshAdvance\NutritionFacts\Admin\Transput\FactsEditRequestInterface:

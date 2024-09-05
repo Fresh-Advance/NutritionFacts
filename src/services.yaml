@@ -10,11 +10,9 @@ services:
 
   FreshAdvance\NutritionFacts\Repository\FactsRepositoryInterface:
     class: FreshAdvance\NutritionFacts\Repository\FactsRepository
-    arguments:
-      FreshAdvance\NutritionFacts\Serializer\FactsSerializerInterface: '@FreshAdvance\NutritionFacts\Serializer\JsonSerializer'
 
-  FreshAdvance\NutritionFacts\Serializer\JsonSerializer: ~
-  FreshAdvance\NutritionFacts\Serializer\YamlSerializer: ~
+  FreshAdvance\NutritionFacts\Service\FactsSerializerServiceInterface:
+    class: FreshAdvance\NutritionFacts\Service\FactsSerializerService
 
   FreshAdvance\NutritionFacts\Service\ModuleSettingsServiceInterface:
     class: FreshAdvance\NutritionFacts\Service\ModuleSettingsService

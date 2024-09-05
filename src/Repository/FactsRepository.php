@@ -10,13 +10,13 @@ declare(strict_types=1);
 namespace FreshAdvance\NutritionFacts\Repository;
 
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
-use FreshAdvance\NutritionFacts\Serializer\FactsSerializerInterface;
+use FreshAdvance\NutritionFacts\Service\FactsSerializerServiceInterface;
 
 class FactsRepository implements FactsRepositoryInterface
 {
     public function __construct(
         private FactsDataAccessInterface $dataAccess,
-        private FactsSerializerInterface $serializer,
+        private FactsSerializerServiceInterface $serializer,
     ) {
     }
 

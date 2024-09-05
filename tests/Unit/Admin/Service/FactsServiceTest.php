@@ -15,7 +15,7 @@ use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsList;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsListInterface;
 use FreshAdvance\NutritionFacts\Repository\FactsRepositoryInterface;
-use FreshAdvance\NutritionFacts\Serializer\FactsSerializerInterface;
+use FreshAdvance\NutritionFacts\Service\FactsSerializerServiceInterface;
 use FreshAdvance\NutritionFacts\Service\ModuleSettingsServiceInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -26,7 +26,7 @@ class FactsServiceTest extends TestCase
         $productId = uniqid();
 
         $sut = $this->getSut(
-            factsSerializer: $factsSerializer = $this->createMock(FactsSerializerInterface::class),
+            factsSerializer: $factsSerializer = $this->createMock(FactsSerializerServiceInterface::class),
             factsRepository: $factsRepository = $this->createMock(FactsRepositoryInterface::class),
         );
 
@@ -48,7 +48,7 @@ class FactsServiceTest extends TestCase
         $productId = uniqid();
 
         $sut = $this->getSut(
-            factsSerializer: $factsSerializerSpy = $this->createMock(FactsSerializerInterface::class),
+            factsSerializer: $factsSerializerSpy = $this->createMock(FactsSerializerServiceInterface::class),
             factsRepository: $factsRepository = $this->createMock(FactsRepositoryInterface::class),
             moduleSettingsService: $moduleSettingsStub = $this->createStub(ModuleSettingsServiceInterface::class),
         );
@@ -83,7 +83,7 @@ class FactsServiceTest extends TestCase
         $serializedFacts = uniqid();
 
         $sut = $this->getSut(
-            factsSerializer: $factsSerializer = $this->createMock(FactsSerializerInterface::class),
+            factsSerializer: $factsSerializer = $this->createMock(FactsSerializerServiceInterface::class),
             factsRepository: $factsRepository = $this->createMock(FactsRepositoryInterface::class),
         );
 
@@ -96,12 +96,12 @@ class FactsServiceTest extends TestCase
     }
 
     public function getSut(
-        FactsSerializerInterface $factsSerializer = null,
+        FactsSerializerServiceInterface $factsSerializer = null,
         FactsRepositoryInterface $factsRepository = null,
         ModuleSettingsServiceInterface $moduleSettingsService = null,
     ): FactsServiceInterface {
         return new FactsService(
-            factsSerializer: $factsSerializer ?? $this->createStub(FactsSerializerInterface::class),
+            factsSerializer: $factsSerializer ?? $this->createStub(FactsSerializerServiceInterface::class),
             factsRepository: $factsRepository ?? $this->createStub(FactsRepositoryInterface::class),
             moduleSettingsService: $moduleSettingsService ?? $this->createStub(ModuleSettingsServiceInterface::class)
         );
