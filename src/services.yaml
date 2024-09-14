@@ -11,6 +11,9 @@ services:
   FreshAdvance\NutritionFacts\Repository\FactsRepositoryInterface:
     class: FreshAdvance\NutritionFacts\Repository\FactsRepository
 
+  FreshAdvance\NutritionFacts\Service\FactsServiceInterface:
+    class: FreshAdvance\NutritionFacts\Service\FactsService
+
   FreshAdvance\NutritionFacts\Service\FactsSerializerServiceInterface:
     class: FreshAdvance\NutritionFacts\Service\FactsSerializerService
 
