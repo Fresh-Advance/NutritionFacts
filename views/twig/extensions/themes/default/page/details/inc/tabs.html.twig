@@ -11,7 +11,68 @@
 {% block details_tabs_longdescription %}
     {{ parent() }}
 
-    <div id="nutrition_facts" class="tab-pane active" itemprop="nutrition_facts">
-        {{ dump(oDetailsProduct.getNutritionFacts()) }}
+    <style>
+        table.nutrition_facts_table {
+            width: 400px;
+            border-collapse: collapse;
+        }
+
+        table.nutrition_facts_table th, table.nutrition_facts_table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table.nutrition_facts_table .titles {
+            width: 150px;
+        }
+
+        table.nutrition_facts_table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    {% set factItems=faGetNutritionFacts(oDetailsProduct.getId()) %}
+    <div id="nutrition_facts" class="tab-pane" itemprop="nutrition_facts">
+        {% for item in factItems %}
+            <table class="nutrition_facts_table">
+                <thead>
+                <tr>
+                    <th class="titles">Nutrient</th>
+                    <th>Per 100g</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Energy</td>
+                    <td>2100 kJ / 500 kcal</td>
+                </tr>
+                <tr>
+                    <td>Fat</td>
+                    <td>20g</td>
+                </tr>
+                <tr>
+                    <td>of which Saturates</td>
+                    <td>5g</td>
+                </tr>
+                <tr>
+                    <td>Carbohydrates</td>
+                    <td>60g</td>
+                </tr>
+                <tr>
+                    <td>of which Sugars</td>
+                    <td>40g</td>
+                </tr>
+                <tr>
+                    <td>Protein</td>
+                    <td>10g</td>
+                </tr>
+                <tr>
+                    <td>Salt</td>
+                    <td>1g</td>
+                </tr>
+                </tbody>
+            </table>
+        {% endfor %}
     </div>
 {% endblock %}
