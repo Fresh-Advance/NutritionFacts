@@ -1,15 +1,19 @@
-install_shop_with_modules:
+install:
   cache:
     prepared_shop: false
+  git:
+    repository: 'Fresh-Advance/NutritionFacts'
+    ref: &ref '{{ .Github.RefName }}'
+    shop_url: 'https://github.com/Fresh-Advance/NutritionFacts.git'
+    shop_ref: *ref
   composer:
+    root_url: ''
     transform: |
       {
           "require": {
-              "oxid-esales/oxideshop-ce": "{{ .Data.global.composer.dev_ref }}",
               "oxid-esales/twig-admin-theme": "{{ .Data.global.composer.dev_ref }}",
               "oxid-esales/twig-theme": "{{ .Data.global.composer.dev_ref }}",
-              "oxid-esales/developer-tools": "{{ .Data.global.composer.dev_ref }}",
-              "fresh-advance/nutrition-facts": "dev-{{ .Github.RefName }}"
+              "oxid-esales/twig-component": "{{ .Data.global.composer.dev_ref }}"
           },
           "repositories": {
             "fresh-advance/nutrition-facts": {
@@ -20,8 +24,13 @@ install_shop_with_modules:
       }
   custom_script_container: |
     vendor/bin/oe-console oe:database:reset --db-host=mysql --db-port=3306 --db-name=example --db-user=root --db-password=root --force
+    vendor/bin/oe-console oe:module:install ./
     vendor/bin/oe-console oe:module:activate fa_nutrition_facts
     vendor/bin/oe-console oe:theme:activate twig
+
+install_shop_with_modules:
+  composer:
+    root_url: ''
 
 runscript: &runscript
   matrix:
@@ -31,7 +40,7 @@ runscript: &runscript
         "fa_nutrition_facts:tests-codeception",
       ]
   fa_nutrition_facts:
-    path: 'vendor/fresh-advance/nutrition-facts'
+    path: ''
 
 runslim:
   <<: *runscript
