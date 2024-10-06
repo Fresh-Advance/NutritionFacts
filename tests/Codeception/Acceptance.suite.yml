@@ -62,9 +62,11 @@ modules:
     - \OxidEsales\Codeception\Module\Translation\TranslationsModule:
         shop_path: '%SHOP_SOURCE_PATH%'
         paths:
-          - Application/views/admin_twig
-          - Application/views/twig
-          - ../vendor/fresh-advance/nutrition-facts/views/admin_twig
+          - 'Application/views/apex'
+          - '%SOURCE_RELATIVE_PACKAGE_PATH%/translations'
+        paths_admin:
+          - 'Application/views/admin_twig'
+          - '%SOURCE_RELATIVE_PACKAGE_PATH%/views/admin_twig'
     - \OxidEsales\Codeception\Module\OxideshopModules
 
 step_decorators:
