@@ -9,23 +9,23 @@ namespace FreshAdvance\NutritionFacts\DataType;
 
 interface NutritionFactsInterface
 {
-    public function getCalories(): float;
+    public function getCalories(): string;
 
-    public function getTotalFat(): float;
+    public function getTotalFat(): string;
 
-    public function getSaturatedFat(): float;
+    public function getSaturatedFat(): string;
 
-    public function getTransFat(): float;
+    public function getTransFat(): string;
 
-    public function getCarbohydrates(): float;
+    public function getCarbohydrates(): string;
 
-    public function getFibre(): float;
+    public function getFibre(): string;
 
-    public function getSugars(): float;
+    public function getSugars(): string;
 
-    public function getProtein(): float;
+    public function getProtein(): string;
 
-    public function getCholesterol(): float;
+    public function getCholesterol(): string;
 
-    public function getSodium(): float;
+    public function getSodium(): string;
 }

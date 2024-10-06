@@ -17,16 +17,24 @@ class NutritionFactsFactory implements NutritionFactsFactoryInterface
     public function getFromArray(array $data): NutritionFactsInterface
     {
         return new NutritionFacts(
-            calories: $data['calories'] ?? 0,
-            totalFat: $data['totalFat'] ?? 0,
-            saturatedFat: $data['saturatedFat'] ?? 0,
-            transFat: $data['transFat'] ?? 0,
-            carbohydrates: $data['carbohydrates'] ?? 0,
-            fibre: $data['fibre'] ?? 0,
-            sugars: $data['sugars'] ?? 0,
-            protein: $data['protein'] ?? 0,
-            cholesterol: $data['cholesterol'] ?? 0,
-            sodium: $data['sodium'] ?? 0,
+            calories: $this->getStringValueByKey($data, 'calories'),
+            totalFat: $this->getStringValueByKey($data, 'totalFat'),
+            saturatedFat: $this->getStringValueByKey($data, 'saturatedFat'),
+            transFat: $this->getStringValueByKey($data, 'transFat'),
+            carbohydrates: $this->getStringValueByKey($data, 'carbohydrates'),
+            fibre: $this->getStringValueByKey($data, 'fibre'),
+            sugars: $this->getStringValueByKey($data, 'sugars'),
+            protein: $this->getStringValueByKey($data, 'protein'),
+            cholesterol: $this->getStringValueByKey($data, 'cholesterol'),
+            sodium: $this->getStringValueByKey($data, 'sodium'),
         );
+    }
+
+    /**
+     * @param array<string, string> $data
+     */
+    private function getStringValueByKey(array $data, string $key): string
+    {
+        return isset($data[$key]) ? strval($data[$key]) : '';
     }
 }

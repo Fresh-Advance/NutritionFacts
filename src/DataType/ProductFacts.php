@@ -14,8 +14,7 @@ class ProductFacts implements ProductFactsInterface
     public function __construct(
         private string $title,
         private NutritionFactsInterface $nutritionFacts,
-    )
-    {
+    ) {
     }
 
     public function getTitle(): string

@@ -11,5 +11,8 @@ use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 
 interface NutritionFactsFactoryInterface
 {
+    /**
+     * @param array<string, string> $data
+     */
     public function getFromArray(array $data): NutritionFactsInterface;
 }

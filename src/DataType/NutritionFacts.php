@@ -11,66 +11,69 @@ namespace FreshAdvance\NutritionFacts\DataType;
 
 class NutritionFacts implements NutritionFactsInterface
 {
+    /**
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList) This is a data class so may have a lot of parameters.
+     */
     public function __construct(
-        private float $calories = 0,
-        private float $totalFat = 0,
-        private float $saturatedFat = 0,
-        private float $transFat = 0,
-        private float $carbohydrates = 0,
-        private float $fibre = 0,
-        private float $sugars = 0,
-        private float $protein = 0,
-        private float $cholesterol = 0,
-        private float $sodium = 0,
+        private string $calories = '',
+        private string $totalFat = '',
+        private string $saturatedFat = '',
+        private string $transFat = '',
+        private string $carbohydrates = '',
+        private string $fibre = '',
+        private string $sugars = '',
+        private string $protein = '',
+        private string $cholesterol = '',
+        private string $sodium = '',
     ) {
     }
 
-    public function getCalories(): float
+    public function getCalories(): string
     {
         return $this->calories;
     }
 
-    public function getTotalFat(): float
+    public function getTotalFat(): string
     {
         return $this->totalFat;
     }
 
-    public function getSaturatedFat(): float
+    public function getSaturatedFat(): string
     {
         return $this->saturatedFat;
     }
 
-    public function getTransFat(): float
+    public function getTransFat(): string
     {
         return $this->transFat;
     }
 
-    public function getCarbohydrates(): float
+    public function getCarbohydrates(): string
     {
         return $this->carbohydrates;
     }
 
-    public function getFibre(): float
+    public function getFibre(): string
     {
         return $this->fibre;
     }
 
-    public function getSugars(): float
+    public function getSugars(): string
     {
         return $this->sugars;
     }
 
-    public function getProtein(): float
+    public function getProtein(): string
     {
         return $this->protein;
     }
 
-    public function getCholesterol(): float
+    public function getCholesterol(): string
     {
         return $this->cholesterol;
     }
 
-    public function getSodium(): float
+    public function getSodium(): string
     {
         return $this->sodium;
     }

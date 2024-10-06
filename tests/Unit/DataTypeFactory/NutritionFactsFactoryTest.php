@@ -51,7 +51,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'calories' => [
             'input' => [
-                'calories' => $input = rand(1, 1000),
+                'calories' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 calories: $input
@@ -60,7 +60,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'total fat' => [
             'input' => [
-                'totalFat' => $input = rand(1, 1000),
+                'totalFat' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 totalFat: $input
@@ -69,7 +69,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'saturated fat' => [
             'input' => [
-                'saturatedFat' => $input = rand(1, 1000),
+                'saturatedFat' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 saturatedFat: $input
@@ -78,7 +78,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'trans fat' => [
             'input' => [
-                'transFat' => $input = rand(1, 1000),
+                'transFat' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 transFat: $input
@@ -87,7 +87,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'carbohydrates' => [
             'input' => [
-                'carbohydrates' => $input = rand(1, 1000),
+                'carbohydrates' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 carbohydrates: $input
@@ -96,7 +96,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'fibre' => [
             'input' => [
-                'fibre' => $input = rand(1, 1000),
+                'fibre' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 fibre: $input
@@ -105,7 +105,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'sugars' => [
             'input' => [
-                'sugars' => $input = rand(1, 1000),
+                'sugars' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 sugars: $input
@@ -114,7 +114,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'protein' => [
             'input' => [
-                'protein' => $input = rand(1, 1000),
+                'protein' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 protein: $input
@@ -123,7 +123,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'cholesterol' => [
             'input' => [
-                'cholesterol' => $input = rand(1, 1000),
+                'cholesterol' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 cholesterol: $input
@@ -132,7 +132,7 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'sodium' => [
             'input' => [
-                'sodium' => $input = rand(1, 1000),
+                'sodium' => $input = uniqid(),
             ],
             'output' => new NutritionFacts(
                 sodium: $input
@@ -141,16 +141,16 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'all' => [
             'input' => [
-                'calories' => $calories = rand(1, 1000),
-                'totalFat' => $totalFat = rand(1, 1000),
-                'saturatedFat' => $saturatedFat = rand(1, 1000),
-                'transFat' => $transFat = rand(1, 1000),
-                'carbohydrates' => $carbohydrates = rand(1, 1000),
-                'fibre' => $fibre = rand(1, 1000),
-                'sugars' => $sugars = rand(1, 1000),
-                'protein' => $protein = rand(1, 1000),
-                'cholesterol' => $cholesterol = rand(1, 1000),
-                'sodium' => $sodium = rand(1, 1000),
+                'calories' => $calories = uniqid(),
+                'totalFat' => $totalFat = uniqid(),
+                'saturatedFat' => $saturatedFat = uniqid(),
+                'transFat' => $transFat = uniqid(),
+                'carbohydrates' => $carbohydrates = uniqid(),
+                'fibre' => $fibre = uniqid(),
+                'sugars' => $sugars = uniqid(),
+                'protein' => $protein = uniqid(),
+                'cholesterol' => $cholesterol = uniqid(),
+                'sodium' => $sodium = uniqid(),
             ],
             'output' => new NutritionFacts(
                 calories: $calories,
@@ -168,16 +168,16 @@ class NutritionFactsFactoryTest extends TestCase
 
         yield 'all with extra' => [
             'input' => [
-                'calories' => $calories = rand(1, 1000),
-                'totalFat' => $totalFat = rand(1, 1000),
-                'saturatedFat' => $saturatedFat = rand(1, 1000),
-                'transFat' => $transFat = rand(1, 1000),
-                'carbohydrates' => $carbohydrates = rand(1, 1000),
-                'fibre' => $fibre = rand(1, 1000),
-                'sugars' => $sugars = rand(1, 1000),
-                'protein' => $protein = rand(1, 1000),
-                'cholesterol' => $cholesterol = rand(1, 1000),
-                'sodium' => $sodium = rand(1, 1000),
+                'calories' => $calories = uniqid(),
+                'totalFat' => $totalFat = uniqid(),
+                'saturatedFat' => $saturatedFat = uniqid(),
+                'transFat' => $transFat = uniqid(),
+                'carbohydrates' => $carbohydrates = uniqid(),
+                'fibre' => $fibre = uniqid(),
+                'sugars' => $sugars = uniqid(),
+                'protein' => $protein = uniqid(),
+                'cholesterol' => $cholesterol = uniqid(),
+                'sodium' => $sodium = uniqid(),
                 uniqid() => uniqid(),
                 uniqid() => uniqid(),
             ],
@@ -191,7 +191,7 @@ class NutritionFactsFactoryTest extends TestCase
                 sugars: $sugars,
                 protein: $protein,
                 cholesterol: $cholesterol,
-                sodium: $sodium
+                sodium: $sodium,
             )
         ];
     }
