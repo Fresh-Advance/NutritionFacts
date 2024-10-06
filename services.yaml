@@ -1,0 +1,11 @@
+imports:
+  - { resource: src/DataTypeFactory/services.yaml }
+
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\NutritionFacts\Core\Registry:
+    class: OxidEsales\Eshop\Core\Registry
+    public: true

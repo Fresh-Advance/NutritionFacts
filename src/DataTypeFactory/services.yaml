@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactoryInterface:
+    class: FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactory
