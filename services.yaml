@@ -1,5 +1,6 @@
 imports:
   - { resource: src/DataTypeFactory/services.yaml }
+  - { resource: src/Repository/services.yaml }
 
 services:
   _defaults:

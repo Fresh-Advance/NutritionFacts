@@ -24,6 +24,7 @@ class ServiceAvailabilityTest extends IntegrationTestCase
     {
         return [
             [\FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactoryInterface::class],
+            [\FreshAdvance\NutritionFacts\Repository\FactsDataAccessInterface::class],
         ];
     }
 }

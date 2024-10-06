@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+    bind:
+      Doctrine\DBAL\Connection: '@=service("OxidEsales\\EshopCommunity\\Internal\\Framework\\Database\\ConnectionProviderInterface").get()'
+
+  FreshAdvance\NutritionFacts\Repository\FactsDataAccessInterface:
+    class: FreshAdvance\NutritionFacts\Repository\FactsDataAccess
