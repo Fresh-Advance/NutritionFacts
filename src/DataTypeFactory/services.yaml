@@ -5,3 +5,6 @@ services:
 
   FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactoryInterface:
     class: FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactory
+
+  FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactoryInterface:
+    class: FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactory
