@@ -13,14 +13,55 @@
     <input type="hidden" name="cl" value="fa_nutrition_facts_admin">
     <input type="hidden" name="fnc" value="saveData">
 
-    <input type="hidden" name="nutrition_facts[product_id]" value="{{ oxid }}">
-    <div>Energy: <input type="text" name="nutrition_facts[ri_energy]"></div>
-    <div>Total fat: <input type="text" name="nutrition_facts[ri_total_fat]"></div>
-    <div>Saturates: <input type="text" name="nutrition_facts[ri_saturates]"></div>
-    <div>Carbohydrates: <input type="text" name="nutrition_facts[ri_carbohydrates]"></div>
-    <div>Sugars: <input type="text" name="nutrition_facts[ri_sugars]"></div>
-    <div>Protein: <input type="text" name="nutrition_facts[ri_protein]"></div>
-    <div>Salt: <input type="text" name="nutrition_facts[ri_salt]"></div>
+    <div class="form-group">
+        <label for="calories">Calories</label>
+        <input type="text" id="nutritionFacts['calories']" name="calories">
+    </div>
+
+    <div class="form-group">
+        <label for="totalFat">Total Fat (g)</label>
+        <input type="text" id="nutritionFacts['totalFat']" name="totalFat">
+    </div>
+
+    <div class="form-group">
+        <label for="saturatedFat">Saturated Fat (g)</label>
+        <input type="text" id="nutritionFacts['saturatedFat']" name="saturatedFat">
+    </div>
+
+    <div class="form-group">
+        <label for="transFat">Trans Fat (g)</label>
+        <input type="text" id="nutritionFacts['transFat']" name="transFat">
+    </div>
+
+    <div class="form-group">
+        <label for="carbohydrates">Carbohydrates (g)</label>
+        <input type="text" id="nutritionFacts['carbohydrates']" name="carbohydrates">
+    </div>
+
+    <div class="form-group">
+        <label for="fibre">Fibre (g)</label>
+        <input type="text" id="nutritionFacts['fibre']" name="fibre">
+    </div>
+
+    <div class="form-group">
+        <label for="sugars">Sugars (g)</label>
+        <input type="text" id="nutritionFacts['sugars']" name="sugars">
+    </div>
+
+    <div class="form-group">
+        <label for="protein">Protein (g)</label>
+        <input type="text" id="nutritionFacts['protein']" name="protein">
+    </div>
+
+    <div class="form-group">
+        <label for="cholesterol">Cholesterol (mg)</label>
+        <input type="text" id="nutritionFacts['cholesterol']" name="cholesterol">
+    </div>
+
+    <div class="form-group">
+        <label for="sodium">Sodium (mg)</label>
+        <input type="text" id="nutritionFacts['sodium']" name="sodium">
+    </div>
 
     <div><input type="submit" name="saveData" value="{{ translate({ ident: "some button" }) }}"></div>
 </form>
