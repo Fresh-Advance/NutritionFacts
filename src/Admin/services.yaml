@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+    bind:
+      OxidEsales\Eshop\Core\Request: '@=service("FreshAdvance\\NutritionFacts\\Core\\Registry").getRequest()'
+
+  FreshAdvance\NutritionFacts\Admin\Transput\EditRequestInterface:
+    class: FreshAdvance\NutritionFacts\Admin\Transput\EditRequest
+    public: true
