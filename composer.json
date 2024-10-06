@@ -36,8 +36,13 @@
     },
     "autoload": {
         "psr-4": {
-            "FreshAdvance\\NutritionFacts\\": "./src",
-            "FreshAdvance\\NutritionFacts\\Tests\\": "./tests"
+            "FreshAdvance\\NutritionFacts\\": "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FreshAdvance\\NutritionFacts\\Tests\\": "./tests",
+            "OxidEsales\\EshopCommunity\\Tests\\": "./vendor/oxid-esales/oxideshop-ce/tests"
         }
     },
     "scripts": {
