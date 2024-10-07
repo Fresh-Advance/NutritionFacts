@@ -23,9 +23,12 @@ class ServiceAvailabilityTest extends IntegrationTestCase
     public function serviceAvailabilityDataProvider(): array
     {
         return [
+            [\FreshAdvance\NutritionFacts\Admin\Transput\EditRequestInterface::class],
+            [\FreshAdvance\NutritionFacts\DataTypeFactory\FactsDataFactoryInterface::class],
             [\FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactoryInterface::class],
             [\FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactoryInterface::class],
             [\FreshAdvance\NutritionFacts\Repository\FactsDataAccessInterface::class],
+            [\FreshAdvance\NutritionFacts\Service\FactsServiceInterface::class],
         ];
     }
 }
