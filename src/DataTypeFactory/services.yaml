@@ -3,8 +3,12 @@ services:
     public: false
     autowire: true
 
+  FreshAdvance\NutritionFacts\DataTypeFactory\FactsDataFactoryInterface:
+    class: FreshAdvance\NutritionFacts\DataTypeFactory\FactsDataFactory
+
   FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactoryInterface:
     class: FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactory
 
   FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactoryInterface:
     class: FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactory
+    public: true
