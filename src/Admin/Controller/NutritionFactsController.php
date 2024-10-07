@@ -26,7 +26,8 @@ class NutritionFactsController extends AdminController
         $editRequest = $this->getServiceFromContainer(EditRequestInterface::class);
         $factsService = $this->getServiceFromContainer(FactsServiceInterface::class);
 
-        $this->addTplParam('productFacts', $factsService->getProductFacts($editRequest->getProductId()));
+        $productFacts = $factsService->getProductFacts($editRequest->getProductId());
+        $this->addTplParam('nutritionFacts', $productFacts->getNutritionFacts());
 
         return parent::render();
     }

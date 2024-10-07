@@ -11,6 +11,7 @@ namespace Admin\Controller;
 
 use FreshAdvance\NutritionFacts\Admin\Controller\NutritionFactsController;
 use FreshAdvance\NutritionFacts\Admin\Transput\EditRequestInterface;
+use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\ProductFactsInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactoryInterface;
 use FreshAdvance\NutritionFacts\Service\FactsServiceInterface;
@@ -30,13 +31,15 @@ class NutritionFactsControllerTest extends TestCase
         );
 
         $factsServiceMock->method('getProductFacts')->with($productId)->willReturn(
-            $productFactsStub = $this->createStub(ProductFactsInterface::class)
+            $this->createConfiguredMock(ProductFactsInterface::class, [
+                'getNutritionFacts' => $nutritionFactsStub = $this->createStub(NutritionFactsInterface::class),
+            ])
         );
 
         $sut->render();
 
         $viewParams = $sut->getViewData();
-        $this->assertSame($productFactsStub, $viewParams['productFacts']);
+        $this->assertSame($nutritionFactsStub, $viewParams['nutritionFacts']);
     }
 
     public function testSave()
