@@ -16,7 +16,7 @@ class FactsDataFactory implements FactsDataFactoryInterface
     public function getFromProductFacts(ProductFactsInterface $productFacts): FactsDataInterface
     {
         $nutritionFacts = $productFacts->getNutritionFacts();
-        
+
         return new FactsData(
             nutritionFactsData: [
                 'calories' => $nutritionFacts->getCalories(),

@@ -27,14 +27,14 @@ class FactsServiceTest extends TestCase
 
         $sut = $this->getSut(
             factsDataAccess: $factsDataAccessMock = $this->createMock(FactsDataAccessInterface::class),
-            nutritionFactsFactory: $nutritionFactsFactoryMock = $this->createMock(NutritionFactsFactoryInterface::class),
+            nutritionFactsFactory: $nutrFactsFactoryMock = $this->createMock(NutritionFactsFactoryInterface::class),
         );
 
         $factsDataAccessMock->method('getFactsData')
             ->with($productId)
             ->willReturn($factsDataStub = $this->createStub(FactsDataInterface::class));
 
-        $nutritionFactsFactoryMock->method('getFromArray')
+        $nutrFactsFactoryMock->method('getFromArray')
             ->with($factsDataStub->getNutritionFactsData())
             ->willReturn($nutritionFactsStub = $this->createStub(NutritionFactsInterface::class));
 
@@ -69,8 +69,7 @@ class FactsServiceTest extends TestCase
         FactsDataAccessInterface $factsDataAccess = null,
         NutritionFactsFactoryInterface $nutritionFactsFactory = null,
         FactsDataFactoryInterface $factsDataFactory = null,
-    ): FactsServiceInterface
-    {
+    ): FactsServiceInterface {
         return new FactsService(
             factsDataAccess: $factsDataAccess ?? $this->createStub(FactsDataAccessInterface::class),
             nutritionFactsFactory: $nutritionFactsFactory ?? $this->createStub(NutritionFactsFactoryInterface::class),

@@ -37,7 +37,7 @@ class FactsService implements FactsServiceInterface
     public function saveProductFacts(string $productId, ProductFactsInterface $productFacts): void
     {
         $factsData = $this->factsDataFactory->getFromProductFacts($productFacts);
-        
+
         $this->factsDataAccess->saveFactsData($productId, $factsData);
     }
 }

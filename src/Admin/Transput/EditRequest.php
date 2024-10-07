@@ -30,7 +30,7 @@ class EditRequest implements EditRequestInterface
 
     public function getProductId(): string
     {
-        /** @var null|array|string $value */
+        /** @var null|array<string,string>|string $value */
         $value = $this->shopRequest->getRequestParameter(self::REQUEST_KEY_PRODUCT_ID);
 
         if (!is_string($value)) {
@@ -42,7 +42,7 @@ class EditRequest implements EditRequestInterface
 
     public function getNutritionFacts(): NutritionFactsInterface
     {
-        /** @var null|array|string $value */
+        /** @var null|array<string,string>|string $value */
         $value = $this->shopRequest->getRequestParameter(self::REQUEST_KEY_NUTRITION_FACTS);
 
         if (!is_array($value)) {
