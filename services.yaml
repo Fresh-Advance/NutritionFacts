@@ -2,6 +2,7 @@ imports:
   - { resource: src/Admin/services.yaml }
   - { resource: src/DataTypeFactory/services.yaml }
   - { resource: src/Repository/services.yaml }
+  - { resource: src/Service/services.yaml }
 
 services:
   _defaults:

@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\NutritionFacts\Service\FactsServiceInterface:
+    class: FreshAdvance\NutritionFacts\Service\FactsService
+    public: true
