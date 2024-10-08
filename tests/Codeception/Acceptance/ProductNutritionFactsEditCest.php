@@ -16,7 +16,7 @@ use FreshAdvance\NutritionFacts\Tests\Codeception\Support\AcceptanceTester;
 use OxidEsales\Codeception\Module\Translation\Translator;
 
 #[Group("fa_nutrition_facts")]
-final class ProductNutritionFactsCest
+final class ProductNutritionFactsEditCest
 {
     private $articleId = 'justSomeOxArticleID';
     private $articleArtNum = 'test_product_1';
@@ -40,28 +40,49 @@ final class ProductNutritionFactsCest
         $I->click(Translator::translate('tbclarticle_fa_nutrition_facts'));
         $I->selectEditFrame();
 
+        $I->seeElement("form");
+    }
+
+    public function testNutritionFactsCanBeSavedForProduct(AcceptanceTester $I): void
+    {
+        $I->wantToTest('Product nutrition data can be saved');
+
+        $adminPanel = $I->loginAdmin();
+
+        $products = $adminPanel->openProducts();
+        $products->find($products->searchNumberInput, $this->articleArtNum);
+
+        $I->selectListFrame();
+        $I->click(Translator::translate('tbclarticle_fa_nutrition_facts'));
+        $I->selectEditFrame();
+
         $nutritionsPage = new NutritionFactsPage($I);
 
         $fields = [
-            'ri_energy',
-            'ri_total_fat',
-            'ri_saturates',
-            'ri_carbohydrates',
-            'ri_sugars',
-            'ri_protein',
-            'ri_salt',
+            'totalFat',
+            'saturatedFat',
+            'transFat',
+            'carbohydrates',
+            'fibre',
+            'sugars',
+            'protein',
+            'cholesterol',
+            'sodium',
         ];
 
+        $calories = (string)rand(1, 1000);
+        $I->fillField(sprintf($nutritionsPage->nutritionFactsField, 'calories'), $calories);
         foreach ($fields as $key => $oneField) {
             $I->fillField(sprintf($nutritionsPage->nutritionFactsField, $oneField), md5($key . $oneField));
         }
 
         $I->click($nutritionsPage->nutritionFactsSaveButton);
         $I->waitForPageLoad();
-//
-//        foreach ($fields as $key => $oneField) {
-//            $I->seeInField(sprintf($nutritionsPage->nutritionFactsField, $oneField), md5($key.$oneField));
-//        }
+
+        $I->seeInField(sprintf($nutritionsPage->nutritionFactsField, 'calories'), $calories);
+        foreach ($fields as $key => $oneField) {
+            $I->seeInField(sprintf($nutritionsPage->nutritionFactsField, $oneField), md5($key . $oneField));
+        }
     }
 
     /** @param AcceptanceTester $I */
@@ -79,6 +100,17 @@ final class ProductNutritionFactsCest
                 'OXDELIVERY' => (new DateTime())->format('Y-m-d 00:00:00'),
                 'OXINSERT' => (new DateTime())->format('Y-m-d 00:00:00'),
                 'OXUPDATEPRICETIME' => (new DateTime())->format('Y-m-d 00:00:00'),
+            ]
+        );
+
+        $I->haveInDatabase(
+            'oxartextends',
+            [
+                'OXID' => $this->articleId,
+                'OXLONGDESC' => uniqid(),
+                'OXLONGDESC_1' => uniqid(),
+                'OXLONGDESC_2' => uniqid(),
+                'OXLONGDESC_3' => uniqid(),
             ]
         );
     }

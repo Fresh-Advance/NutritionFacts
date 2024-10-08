@@ -17,7 +17,7 @@ class NutritionFactsPage extends Page
     use ProductList;
 
     // Reference Intake
-    public $nutritionFactsField = "//input[@name='nutrition_facts[%s]']";
+    public $nutritionFactsField = "//input[@name='nutritionFacts[%s]']";
 
     public $nutritionFactsSaveButton = "//input[@name='saveData']";
 }
