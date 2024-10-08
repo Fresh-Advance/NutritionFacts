@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+
+  FreshAdvance\NutritionFacts\Twig\Extension\ProductFactsExtension:
+    class: FreshAdvance\NutritionFacts\Twig\Extension\ProductFactsExtension
+    tags: ['twig.extension']

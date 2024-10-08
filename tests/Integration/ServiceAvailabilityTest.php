@@ -29,6 +29,7 @@ class ServiceAvailabilityTest extends IntegrationTestCase
             [\FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactoryInterface::class],
             [\FreshAdvance\NutritionFacts\Repository\FactsDataAccessInterface::class],
             [\FreshAdvance\NutritionFacts\Service\FactsServiceInterface::class],
+            [\FreshAdvance\NutritionFacts\Twig\Extension\ProductFactsExtension::class],
         ];
     }
 }
