@@ -14,56 +14,56 @@
     <input type="hidden" name="fnc" value="saveData">
 
     <div class="form-group">
-        <label for="calories">Calories (kcal)</label>
+        <label for="calories">Calories (kCal)</label>
         <input type="text" id="calories" name="nutritionFacts[calories]" value="{{ nutritionFacts.getCalories() }}">
     </div>
 
     <div class="form-group">
-        <label for="totalFat">Total Fat (g)</label>
+        <label for="totalFat">Total Fat</label>
         <input type="text" id="totalFat" name="nutritionFacts[totalFat]" value="{{ nutritionFacts.getTotalFat() }}">
     </div>
 
     <div class="form-group">
-        <label for="saturatedFat">Saturated Fat (g)</label>
+        <label for="saturatedFat">Saturated Fat</label>
         <input type="text" id="saturatedFat" name="nutritionFacts[saturatedFat]" value="{{ nutritionFacts.getSaturatedFat() }}">
     </div>
 
     <div class="form-group">
-        <label for="transFat">Trans Fat (g)</label>
+        <label for="transFat">Trans Fat</label>
         <input type="text" id="transFat" name="nutritionFacts[transFat]" value="{{ nutritionFacts.getTransFat() }}">
     </div>
 
     <div class="form-group">
-        <label for="carbohydrates">Carbohydrates (g)</label>
+        <label for="carbohydrates">Carbohydrates</label>
         <input type="text" id="carbohydrates" name="nutritionFacts[carbohydrates]" value="{{ nutritionFacts.getCarbohydrates() }}">
     </div>
 
     <div class="form-group">
-        <label for="fibre">Fibre (g)</label>
+        <label for="fibre">Fibre</label>
         <input type="text" id="fibre" name="nutritionFacts[fibre]" value="{{ nutritionFacts.getFibre() }}">
     </div>
 
     <div class="form-group">
-        <label for="sugars">Sugars (g)</label>
+        <label for="sugars">Sugars</label>
         <input type="text" id="sugars" name="nutritionFacts[sugars]" value="{{ nutritionFacts.getSugars() }}">
     </div>
 
     <div class="form-group">
-        <label for="protein">Protein (g)</label>
+        <label for="protein">Protein</label>
         <input type="text" id="protein" name="nutritionFacts[protein]" value="{{ nutritionFacts.getProtein() }}">
     </div>
 
     <div class="form-group">
-        <label for="cholesterol">Cholesterol (mg)</label>
+        <label for="cholesterol">Cholesterol</label>
         <input type="text" id="cholesterol" name="nutritionFacts[cholesterol]" value="{{ nutritionFacts.getCholesterol() }}">
     </div>
 
     <div class="form-group">
-        <label for="sodium">Sodium (mg)</label>
+        <label for="sodium">Sodium</label>
         <input type="text" id="sodium" name="nutritionFacts[sodium]" value="{{ nutritionFacts.getSodium() }}">
     </div>
 
-    <div><input type="submit" name="saveData" value="{{ translate({ ident: "some button" }) }}"></div>
+    <div><input type="submit" name="saveData" value="{{ translate({ ident: "FA_NUTRITION_FACTS_FORM_SAVE" }) }}"></div>
 </form>
 
 {% include "bottomnaviitem.html.twig" %}

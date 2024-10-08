@@ -1,0 +1,134 @@
+{% extends 'page/details/inc/tabs.html.twig' %}
+
+{% set nutritionFacts=faGetProductFacts(oDetailsProduct.getId()).getNutritionFacts() %}
+
+{% set nutritionFactsTableContent %}
+    {% if nutritionFacts.getCalories() %}
+        <tr>
+            <td>{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_ENERGY" }) }}</td>
+            <td>{{ nutritionFacts.getCalories() }} kCal / {{ nutritionFacts.getCalories() * 4.184 }} kJ</td>
+        </tr>
+    {% endif %}
+
+    {% if nutritionFacts.getTotalFat() %}
+        <tr>
+            <td>{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_FAT_TOTAL" }) }}</td>
+            <td>{{ nutritionFacts.getTotalFat() }}</td>
+        </tr>
+    {% endif %}
+
+    {% if nutritionFacts.getSaturatedFat() %}
+        <tr>
+            <td class="sub">{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_FAT_SATURATED" }) }}</td>
+            <td>{{ nutritionFacts.getSaturatedFat() }}</td>
+        </tr>
+    {% endif %}
+
+    {% if nutritionFacts.getTransFat() %}
+        <tr>
+            <td class="sub">{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_FAT_TRANS" }) }}</td>
+            <td>{{ nutritionFacts.getTransFat() }}</td>
+        </tr>
+    {% endif %}
+
+    {% if nutritionFacts.getCholesterol() %}
+        <tr>
+            <td>{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_CHOLESTEROL" }) }}</td>
+            <td>{{ nutritionFacts.getCholesterol() }}</td>
+        </tr>
+    {% endif %}
+
+    {% if nutritionFacts.getSodium() %}
+        <tr>
+            <td>{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_SODIUM" }) }}</td>
+            <td>{{ nutritionFacts.getSodium() }}</td>
+        </tr>
+    {% endif %}
+
+    {% if nutritionFacts.getCarbohydrates() %}
+        <tr>
+            <td>{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_CARBOHYDRATE_TOTAL" }) }}</td>
+            <td>{{ nutritionFacts.getCarbohydrates() }}</td>
+        </tr>
+    {% endif %}
+
+    {% if nutritionFacts.getFibre() %}
+        <tr>
+            <td class="sub">{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_CARBOHYDRATE_FIBER" }) }}</td>
+            <td>{{ nutritionFacts.getFibre() }}</td>
+        </tr>
+    {% endif %}
+
+    {% if nutritionFacts.getSugars() %}
+        <tr>
+            <td class="sub">{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_CARBOHYDRATE_SUGARS" }) }}</td>
+            <td>{{ nutritionFacts.getSugars() }}</td>
+        </tr>
+    {% endif %}
+
+    {% if nutritionFacts.getProtein() %}
+        <tr>
+            <td>{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_PROTEIN" }) }}</td>
+            <td>{{ nutritionFacts.getProtein() }}</td>
+        </tr>
+    {% endif %}
+{% endset %}
+
+{% block details_tabs_longdescription_tab_name %}
+    {{ parent() }}
+
+    {% if nutritionFactsTableContent|trim %}
+        <li>
+            <a href="#nutrition_facts" data-toggle="tab">{{ translate({ ident: "FA_NUTRITION_FACTS_TAB" }) }}</a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block details_tabs_longdescription %}
+    {{ parent() }}
+
+    {% if nutritionFactsTableContent|trim %}
+        <style>
+            table.nutrition_facts_table {
+                width: 450px;
+                border-collapse: collapse;
+            }
+
+            table.nutrition_facts_table th, table.nutrition_facts_table td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left;
+            }
+
+            table.nutrition_facts_table .titles {
+                width: 250px;
+            }
+
+            table.nutrition_facts_table .sub {
+                padding-left: 30px;
+            }
+
+            table.nutrition_facts_table th {
+                background-color: #f2f2f2;
+            }
+        </style>
+
+
+        <div id="nutrition_facts" class="tab-pane" itemprop="nutrition_facts">
+            <table class="nutrition_facts_table">
+                <thead>
+                <tr>
+                    <th class="titles">{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_NUTRIENT" }) }}</th>
+                    <th>Per 100g</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {{ nutritionFactsTableContent }}
+
+                </tbody>
+            </table>
+        </div>
+
+    {% endif %}
+{% endblock %}
