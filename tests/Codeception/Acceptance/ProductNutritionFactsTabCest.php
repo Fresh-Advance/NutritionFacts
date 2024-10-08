@@ -22,10 +22,40 @@ final class ProductNutritionFactsTabCest
     private $articleId = 'justSomeOxArticleID';
     private $articleArtNum = 'test_product_1';
 
-    /** @param AcceptanceTester $I */
     public function _before(AcceptanceTester $I)
     {
-        $this->insertProductInDatabase($I);
+        $I->haveInDatabase(
+            'oxarticles',
+            [
+                'OXID' => $this->articleId,
+                'oxartnum' => $this->articleArtNum,
+                'OXTITLE' => 'Test product 2 [EN] šÄßüл',
+                'OXSHORTDESC' => 'Test product 2 short desc [EN] šÄßüл',
+                'OXACTIVEFROM' => (new DateTime())->format('Y-m-d 00:00:00'),
+                'OXACTIVETO' => (new DateTime())->modify('+1 week')->format('Y-m-d 00:00:00'),
+                'OXDELIVERY' => (new DateTime())->format('Y-m-d 00:00:00'),
+                'OXINSERT' => (new DateTime())->format('Y-m-d 00:00:00'),
+                'OXUPDATEPRICETIME' => (new DateTime())->format('Y-m-d 00:00:00'),
+            ]
+        );
+
+        $I->haveInDatabase(
+            'oxartextends',
+            [
+                'OXID' => $this->articleId,
+                'OXLONGDESC' => uniqid(),
+                'OXLONGDESC_1' => uniqid(),
+                'OXLONGDESC_2' => uniqid(),
+                'OXLONGDESC_3' => uniqid(),
+            ]
+        );
+    }
+
+    public function _after(AcceptanceTester $I)
+    {
+        $I->deleteFromDatabase('oxarticles', ['OXID' => $this->articleId]);
+        $I->deleteFromDatabase('oxartextends', ['OXID' => $this->articleId]);
+        $I->deleteFromDatabase('fa_nutrition_facts', ['product_id' => $this->articleId]);
     }
 
     public function testNutritionFactsTabIsNotAvailableForProduct(AcceptanceTester $I): void
@@ -125,35 +155,5 @@ final class ProductNutritionFactsTabCest
 
         $I->see(Translator::translate('FA_NUTRITION_FACTS_TABLE_PROTEIN'));
         $I->see($protein);
-    }
-
-    /** @param AcceptanceTester $I */
-    private function insertProductInDatabase(AcceptanceTester $I): void
-    {
-        $I->haveInDatabase(
-            'oxarticles',
-            [
-                'OXID' => $this->articleId,
-                'oxartnum' => $this->articleArtNum,
-                'OXTITLE' => 'Test product 2 [EN] šÄßüл',
-                'OXSHORTDESC' => 'Test product 2 short desc [EN] šÄßüл',
-                'OXACTIVEFROM' => (new DateTime())->format('Y-m-d 00:00:00'),
-                'OXACTIVETO' => (new DateTime())->modify('+1 week')->format('Y-m-d 00:00:00'),
-                'OXDELIVERY' => (new DateTime())->format('Y-m-d 00:00:00'),
-                'OXINSERT' => (new DateTime())->format('Y-m-d 00:00:00'),
-                'OXUPDATEPRICETIME' => (new DateTime())->format('Y-m-d 00:00:00'),
-            ]
-        );
-
-        $I->haveInDatabase(
-            'oxartextends',
-            [
-                'OXID' => $this->articleId,
-                'OXLONGDESC' => uniqid(),
-                'OXLONGDESC_1' => uniqid(),
-                'OXLONGDESC_2' => uniqid(),
-                'OXLONGDESC_3' => uniqid(),
-            ]
-        );
     }
 }
