@@ -15,6 +15,7 @@ use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\ProductFactsInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactoryInterface;
 use FreshAdvance\NutritionFacts\Service\FactsServiceInterface;
+use FreshAdvance\NutritionFacts\Settings\FactsSettingsInterface;
 use PHPUnit\Framework\TestCase;
 
 class NutritionFactsControllerTest extends TestCase
@@ -28,6 +29,7 @@ class NutritionFactsControllerTest extends TestCase
                 'getProductId' => $productId
             ]),
             factsServiceMock: $factsServiceMock = $this->createMock(FactsServiceInterface::class),
+            factsSettingsMock: $factsSettingsMock = $this->createMock(FactsSettingsInterface::class),
         );
 
         $factsServiceMock->method('getProductFacts')->with($productId)->willReturn(
@@ -36,10 +38,15 @@ class NutritionFactsControllerTest extends TestCase
             ])
         );
 
+        $factsSettingsMock->method('getMeasurementOptions')->willReturn(
+            $measurementOptions = [uniqid() => uniqid()]
+        );
+
         $sut->render();
 
         $viewParams = $sut->getViewData();
         $this->assertSame($nutritionFactsStub, $viewParams['nutritionFacts']);
+        $this->assertSame($measurementOptions, $viewParams['measurementOptions']);
     }
 
     public function testSave()
@@ -69,16 +76,19 @@ class NutritionFactsControllerTest extends TestCase
         EditRequestInterface $editRequestMock = null,
         FactsServiceInterface $factsServiceMock = null,
         ProductFactsFactoryInterface $productFactsFactoryMock = null,
+        FactsSettingsInterface $factsSettingsMock = null,
     ): NutritionFactsController {
         $editRequestMock ??= $this->createStub(EditRequestInterface::class);
         $factsServiceMock ??= $this->createStub(FactsServiceInterface::class);
         $productFactsFactoryMock ??= $this->createStub(ProductFactsFactoryInterface::class);
+        $factsSettingsMock ??= $this->createStub(FactsSettingsInterface::class);
 
         $sut = $this->createPartialMock(NutritionFactsController::class, ['getServiceFromContainer']);
         $sut->method('getServiceFromContainer')->willReturnMap([
             [EditRequestInterface::class, $editRequestMock],
             [FactsServiceInterface::class, $factsServiceMock],
             [ProductFactsFactoryInterface::class, $productFactsFactoryMock],
+            [FactsSettingsInterface::class, $factsSettingsMock],
         ]);
 
         return $sut;

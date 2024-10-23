@@ -19,4 +19,5 @@ $aLang = [
     'FA_NUTRITION_FACTS_TABLE_CARBOHYDRATE_SUGARS' => 'davon Zucker',
     'FA_NUTRITION_FACTS_TABLE_PROTEIN' => 'Eiweiß',
 
+    'FA_NUTRITION_FACTS_MEASUREMENT' => 'Pro %s',
 ];

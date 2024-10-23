@@ -14,6 +14,18 @@
     <input type="hidden" name="fnc" value="saveData">
 
     <div class="form-group">
+        <label for="measurement">Measurement:</label>
+        <select id="measurement" name="measurement">
+            {% for key, value in measurementOptions %}
+                <option value="{{ key }}">{{ translate({ ident: key }) }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="measurementValues">Values:</label>
+        <input type="text" id="measurementValues" name="measurementValues" value="{{ measurementOptions|first }}">
+    </div>
+
+    <div class="form-group">
         <label for="calories">Calories (kCal)</label>
         <input type="text" id="calories" name="nutritionFacts[calories]" value="{{ nutritionFacts.getCalories() }}">
     </div>

@@ -12,6 +12,7 @@ namespace FreshAdvance\NutritionFacts\Admin\Controller;
 use FreshAdvance\NutritionFacts\Admin\Transput\EditRequestInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactoryInterface;
 use FreshAdvance\NutritionFacts\Service\FactsServiceInterface;
+use FreshAdvance\NutritionFacts\Settings\FactsSettingsInterface;
 use FreshAdvance\NutritionFacts\Traits\ServiceContainer;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminController;
 
@@ -25,6 +26,9 @@ class NutritionFactsController extends AdminController
     {
         $editRequest = $this->getServiceFromContainer(EditRequestInterface::class);
         $factsService = $this->getServiceFromContainer(FactsServiceInterface::class);
+        $factsSettings = $this->getServiceFromContainer(FactsSettingsInterface::class);
+
+        $this->addTplParam('measurementOptions', $factsSettings->getMeasurementOptions());
 
         $productFacts = $factsService->getProductFacts($editRequest->getProductId());
         $this->addTplParam('nutritionFacts', $productFacts->getNutritionFacts());

@@ -19,4 +19,5 @@ $aLang = [
     'FA_NUTRITION_FACTS_TABLE_CARBOHYDRATE_SUGARS' => 'of which Sugars',
     'FA_NUTRITION_FACTS_TABLE_PROTEIN' => 'Protein',
 
+    'FA_NUTRITION_FACTS_MEASUREMENT' => 'Per %s',
 ];
