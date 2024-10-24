@@ -1,6 +1,8 @@
 {% extends 'page/details/inc/tabs.html.twig' %}
 
-{% set nutritionFacts=faGetProductFacts(oDetailsProduct.getId()).getNutritionFacts() %}
+{% set productFacts = faGetProductFacts(oDetailsProduct.getId()) %}
+{% set nutritionFacts = productFacts.getNutritionFacts() %}
+{% set measurement = productFacts.getMeasurement() %}
 
 {% set nutritionFactsTableContent %}
     {% if nutritionFacts.getCalories() %}
@@ -119,7 +121,7 @@
                 <thead>
                 <tr>
                     <th class="titles">{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_NUTRIENT" }) }}</th>
-                    <th>Per 100g</th>
+                    <th>{{ translate({ ident: measurement.getFormat, args: measurement.getValues|split(";") }) }}</th>
                 </tr>
                 </thead>
                 <tbody>
