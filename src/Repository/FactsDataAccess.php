@@ -31,11 +31,11 @@ class FactsDataAccess implements FactsDataAccessInterface
         $returnResult = $result->fetchAssociative();
 
         /** @var array<string, string> $decodedResult */
-        $decodedResult = $returnResult ? json_decode($returnResult['nutrition_facts'], true) : [];
+        $decodedResult = $returnResult ? json_decode((string)$returnResult['nutrition_facts'], true) : [];
 
         return new FactsData(
-            measurementFormat: (string)$returnResult['measurement_format'],
-            measurementValues: (string)$returnResult['measurement_values'],
+            measurementFormat: $returnResult['measurement_format'] ?? '',
+            measurementValues: $returnResult['measurement_values'] ?? '',
             nutritionFactsData: $decodedResult,
         );
     }

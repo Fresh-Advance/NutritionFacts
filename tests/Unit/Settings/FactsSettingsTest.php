@@ -30,8 +30,7 @@ class FactsSettingsTest extends TestCase
 
     public function getSut(
         ModuleSettingServiceInterface $moduleSettingService = null,
-    ): FactsSettingsInterface
-    {
+    ): FactsSettingsInterface {
         return new FactsSettings(
             moduleSettingService: $moduleSettingService ?? $this->createMock(ModuleSettingServiceInterface::class),
         );

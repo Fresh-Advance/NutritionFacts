@@ -9,6 +9,8 @@ namespace FreshAdvance\NutritionFacts\Settings;
 
 interface FactsSettingsInterface
 {
-    /** array<string, string> */
+    /**
+     * @return array<string, string>
+     */
     public function getMeasurementOptions(): array;
 }

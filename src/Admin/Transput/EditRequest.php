@@ -34,14 +34,7 @@ class EditRequest implements EditRequestInterface
 
     public function getProductId(): string
     {
-        /** @var null|array<string,string>|string $value */
-        $value = $this->shopRequest->getRequestParameter(self::REQUEST_KEY_PRODUCT_ID);
-
-        if (!is_string($value)) {
-            throw new InvalidRequestParameterException(self::REQUEST_KEY_PRODUCT_ID);
-        }
-
-        return $value;
+        return $this->getStringParameter(self::REQUEST_KEY_PRODUCT_ID);
     }
 
     public function getNutritionFacts(): NutritionFactsInterface
@@ -59,8 +52,20 @@ class EditRequest implements EditRequestInterface
     public function getMeasurement(): MeasurementInterface
     {
         return new Measurement(
-            format: $this->shopRequest->getRequestParameter(self::REQUEST_KEY_MEASUREMENT),
-            values: $this->shopRequest->getRequestParameter(self::REQUEST_KEY_MEASUREMENT_VALUES),
+            format: $this->getStringParameter(self::REQUEST_KEY_MEASUREMENT),
+            values: $this->getStringParameter(self::REQUEST_KEY_MEASUREMENT_VALUES),
         );
+    }
+
+    private function getStringParameter(string $key): string
+    {
+        /** @var null|array<string,string>|string $value */
+        $value = $this->shopRequest->getRequestParameter($key);
+
+        if (!is_string($value)) {
+            throw new InvalidRequestParameterException($key);
+        }
+
+        return $value;
     }
 }
