@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace DataType;
+namespace FreshAdvance\NutritionFacts\Tests\Unit\DataType;
 
 use FreshAdvance\NutritionFacts\DataType\FactsData;
 use PHPUnit\Framework\TestCase;
@@ -28,8 +28,13 @@ class FactsDataTest extends TestCase
         ];
 
         $sut = new FactsData(
-            nutritionFactsData: $exampleData
+            measurementFormat: $measurementFormat = uniqid(),
+            measurementValues: $measurementValues = uniqid(),
+            nutritionFactsData: $exampleData,
         );
+
         $this->assertSame($exampleData, $sut->getNutritionFactsData());
+        $this->assertSame($measurementFormat, $sut->getMeasurementFormat());
+        $this->assertSame($measurementValues, $sut->getMeasurementValues());
     }
 }

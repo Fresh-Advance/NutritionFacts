@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\NutritionFacts\Tests\Unit\DataType;
 
+use FreshAdvance\NutritionFacts\DataType\MeasurementInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\ProductFacts;
 use PHPUnit\Framework\TestCase;
@@ -20,9 +21,11 @@ class ProductFactsTest extends TestCase
         $sut = new ProductFacts(
             title: $title = uniqid(),
             nutritionFacts: $nutritionFacts = $this->createStub(NutritionFactsInterface::class),
+            measurement: $measurement = $this->createStub(MeasurementInterface::class),
         );
 
         $this->assertSame($title, $sut->getTitle());
         $this->assertSame($nutritionFacts, $sut->getNutritionFacts());
+        $this->assertSame($measurement, $sut->getMeasurement());
     }
 }

@@ -7,6 +7,7 @@
 
 namespace FreshAdvance\NutritionFacts\Admin\Transput;
 
+use FreshAdvance\NutritionFacts\DataType\MeasurementInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 
 interface EditRequestInterface
@@ -14,4 +15,6 @@ interface EditRequestInterface
     public function getProductId(): string;
 
     public function getNutritionFacts(): NutritionFactsInterface;
+
+    public function getMeasurement(): MeasurementInterface;
 }

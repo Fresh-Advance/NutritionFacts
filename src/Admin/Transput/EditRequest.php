@@ -10,8 +10,9 @@ declare(strict_types=1);
 namespace FreshAdvance\NutritionFacts\Admin\Transput;
 
 use FreshAdvance\NutritionFacts\Admin\Exception\InvalidRequestParameterException;
+use FreshAdvance\NutritionFacts\DataType\Measurement;
+use FreshAdvance\NutritionFacts\DataType\MeasurementInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
-use FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactory;
 use FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactoryInterface;
 use OxidEsales\Eshop\Core\Request;
 
@@ -21,6 +22,9 @@ class EditRequest implements EditRequestInterface
 {
     public const REQUEST_KEY_PRODUCT_ID = 'oxid';
     public const REQUEST_KEY_NUTRITION_FACTS = 'nutritionFacts';
+
+    public const REQUEST_KEY_MEASUREMENT = 'measurement';
+    public const REQUEST_KEY_MEASUREMENT_VALUES = 'measurementValues';
 
     public function __construct(
         protected Request $shopRequest,
@@ -50,5 +54,13 @@ class EditRequest implements EditRequestInterface
         }
 
         return $this->nutritionFactsFactory->getFromArray($value);
+    }
+
+    public function getMeasurement(): MeasurementInterface
+    {
+        return new Measurement(
+            format: $this->shopRequest->getRequestParameter(self::REQUEST_KEY_MEASUREMENT),
+            values: $this->shopRequest->getRequestParameter(self::REQUEST_KEY_MEASUREMENT_VALUES),
+        );
     }
 }

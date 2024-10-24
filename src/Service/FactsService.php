@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\NutritionFacts\Service;
 
+use FreshAdvance\NutritionFacts\DataType\Measurement;
 use FreshAdvance\NutritionFacts\DataType\ProductFacts;
 use FreshAdvance\NutritionFacts\DataType\ProductFactsInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\FactsDataFactoryInterface;
@@ -31,6 +32,10 @@ class FactsService implements FactsServiceInterface
         return new ProductFacts(
             title: '',
             nutritionFacts: $this->nutritionFactsFactory->getFromArray($factsData->getNutritionFactsData()),
+            measurement: new Measurement(
+                format: $factsData->getMeasurementFormat(),
+                values: $factsData->getMeasurementValues(),
+            )
         );
     }
 

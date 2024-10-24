@@ -25,6 +25,7 @@ class ProductFactsFactory implements ProductFactsFactoryInterface
         return new ProductFacts(
             title: '',
             nutritionFacts: $this->editRequest->getNutritionFacts(),
+            measurement: $this->editRequest->getMeasurement(),
         );
     }
 }

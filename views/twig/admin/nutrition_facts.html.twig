@@ -17,13 +17,25 @@
         <label for="measurement">Measurement:</label>
         <select id="measurement" name="measurement">
             {% for key, value in measurementOptions %}
-                <option value="{{ key }}">{{ translate({ ident: key }) }}</option>
+                <option value="{{ key }}" data-default="{{ value }}"
+                        {% if measurement.getFormat() == key %}selected{% endif %}>{{ translate({ ident: key }) }}</option>
             {% endfor %}
         </select>
 
         <label for="measurementValues">Values:</label>
-        <input type="text" id="measurementValues" name="measurementValues" value="{{ measurementOptions|first }}">
+        <input type="text" id="measurementValues" name="measurementValues" value="{{ measurement.getValues() }}">
     </div>
+
+    <script>
+        let measurementObject = document.getElementById('measurement');
+        measurementObject.addEventListener('change', function () {
+            var selected = this.options[this.selectedIndex];
+            document.getElementById('measurementValues').value = selected.getAttribute('data-default');
+        });
+        if (!document.getElementById('measurementValues').value) {
+            measurementObject.dispatchEvent(new Event('change'));
+        }
+    </script>
 
     <div class="form-group">
         <label for="calories">Calories (kCal)</label>
@@ -37,7 +49,8 @@
 
     <div class="form-group">
         <label for="saturatedFat">Saturated Fat</label>
-        <input type="text" id="saturatedFat" name="nutritionFacts[saturatedFat]" value="{{ nutritionFacts.getSaturatedFat() }}">
+        <input type="text" id="saturatedFat" name="nutritionFacts[saturatedFat]"
+               value="{{ nutritionFacts.getSaturatedFat() }}">
     </div>
 
     <div class="form-group">
@@ -47,7 +60,8 @@
 
     <div class="form-group">
         <label for="carbohydrates">Carbohydrates</label>
-        <input type="text" id="carbohydrates" name="nutritionFacts[carbohydrates]" value="{{ nutritionFacts.getCarbohydrates() }}">
+        <input type="text" id="carbohydrates" name="nutritionFacts[carbohydrates]"
+               value="{{ nutritionFacts.getCarbohydrates() }}">
     </div>
 
     <div class="form-group">
@@ -67,7 +81,8 @@
 
     <div class="form-group">
         <label for="cholesterol">Cholesterol</label>
-        <input type="text" id="cholesterol" name="nutritionFacts[cholesterol]" value="{{ nutritionFacts.getCholesterol() }}">
+        <input type="text" id="cholesterol" name="nutritionFacts[cholesterol]"
+               value="{{ nutritionFacts.getCholesterol() }}">
     </div>
 
     <div class="form-group">

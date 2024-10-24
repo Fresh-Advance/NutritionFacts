@@ -32,6 +32,7 @@ class NutritionFactsController extends AdminController
 
         $productFacts = $factsService->getProductFacts($editRequest->getProductId());
         $this->addTplParam('nutritionFacts', $productFacts->getNutritionFacts());
+        $this->addTplParam('measurement', $productFacts->getMeasurement());
 
         return parent::render();
     }

@@ -32,15 +32,23 @@ class FactsServiceTest extends TestCase
 
         $factsDataAccessMock->method('getFactsData')
             ->with($productId)
-            ->willReturn($factsDataStub = $this->createStub(FactsDataInterface::class));
+            ->willReturn($this->createConfiguredMock(FactsDataInterface::class, [
+                'getNutritionFactsData' => $nutritionFactsData = [uniqid() => uniqid()],
+                'getMeasurementFormat' => $measurementFormat = uniqid(),
+                'getMeasurementValues' => $measurementValues = uniqid(),
+            ]));
 
         $nutrFactsFactoryMock->method('getFromArray')
-            ->with($factsDataStub->getNutritionFactsData())
+            ->with($nutritionFactsData)
             ->willReturn($nutritionFactsStub = $this->createStub(NutritionFactsInterface::class));
 
         $productFacts = $sut->getProductFacts($productId);
 
         $this->assertSame($nutritionFactsStub, $productFacts->getNutritionFacts());
+
+        $measurement = $productFacts->getMeasurement();
+        $this->assertSame($measurementFormat, $measurement->getFormat());
+        $this->assertSame($measurementValues, $measurement->getValues());
     }
 
     public function testSaveProductFacts(): void

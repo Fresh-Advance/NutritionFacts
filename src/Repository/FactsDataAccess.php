@@ -23,17 +23,19 @@ class FactsDataAccess implements FactsDataAccessInterface
     public function getFactsData(string $productId): FactsDataInterface
     {
         $result = $this->connection->executeQuery(
-            "SELECT nutrition_facts FROM fa_nutrition_facts WHERE product_id = :productId",
+            "SELECT * FROM fa_nutrition_facts WHERE product_id = :productId",
             ['productId' => $productId]
         );
 
-        /** @var string|null $returnResult */
-        $returnResult = $result->fetchOne();
+        /** @var array<string, string|null>|null $returnResult */
+        $returnResult = $result->fetchAssociative();
 
         /** @var array<string, string> $decodedResult */
-        $decodedResult = $returnResult ? json_decode($returnResult, true) : [];
+        $decodedResult = $returnResult ? json_decode($returnResult['nutrition_facts'], true) : [];
 
         return new FactsData(
+            measurementFormat: (string)$returnResult['measurement_format'],
+            measurementValues: (string)$returnResult['measurement_values'],
             nutritionFactsData: $decodedResult,
         );
     }
@@ -43,11 +45,16 @@ class FactsDataAccess implements FactsDataAccessInterface
         $encodedFacts = json_encode($factsData->getNutritionFactsData());
 
         $this->connection->executeQuery(
-            "INSERT INTO fa_nutrition_facts (product_id, nutrition_facts)
-            VALUES (:product_id, :nutrition_facts)
-            ON DUPLICATE KEY UPDATE nutrition_facts = VALUES(nutrition_facts);",
+            "INSERT INTO fa_nutrition_facts (product_id, measurement_format, measurement_values, nutrition_facts)
+            VALUES (:product_id, :measurement_format, :measurement_values, :nutrition_facts)
+            ON DUPLICATE KEY UPDATE 
+                measurement_format = VALUES(measurement_format),
+                measurement_values = VALUES(measurement_values),
+                nutrition_facts = VALUES(nutrition_facts);",
             [
                 'product_id' => $productId,
+                'measurement_format' => $factsData->getMeasurementFormat(),
+                'measurement_values' => $factsData->getMeasurementValues(),
                 'nutrition_facts' => $encodedFacts,
             ]
         );

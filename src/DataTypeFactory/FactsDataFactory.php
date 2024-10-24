@@ -16,8 +16,11 @@ class FactsDataFactory implements FactsDataFactoryInterface
     public function getFromProductFacts(ProductFactsInterface $productFacts): FactsDataInterface
     {
         $nutritionFacts = $productFacts->getNutritionFacts();
+        $measurement = $productFacts->getMeasurement();
 
         return new FactsData(
+            measurementFormat: $measurement->getFormat(),
+            measurementValues: $measurement->getValues(),
             nutritionFactsData: [
                 'calories' => $nutritionFacts->getCalories(),
                 'totalFat' => $nutritionFacts->getTotalFat(),

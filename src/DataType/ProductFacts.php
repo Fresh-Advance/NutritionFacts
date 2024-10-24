@@ -14,6 +14,7 @@ class ProductFacts implements ProductFactsInterface
     public function __construct(
         private string $title,
         private NutritionFactsInterface $nutritionFacts,
+        private MeasurementInterface $measurement,
     ) {
     }
 
@@ -25,5 +26,10 @@ class ProductFacts implements ProductFactsInterface
     public function getNutritionFacts(): NutritionFactsInterface
     {
         return $this->nutritionFacts;
+    }
+
+    public function getMeasurement(): MeasurementInterface
+    {
+        return $this->measurement;
     }
 }

@@ -12,4 +12,6 @@ interface ProductFactsInterface
     public function getTitle(): string;
 
     public function getNutritionFacts(): NutritionFactsInterface;
+
+    public function getMeasurement(): MeasurementInterface;
 }

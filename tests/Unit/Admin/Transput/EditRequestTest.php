@@ -112,4 +112,23 @@ class EditRequestTest extends TestCase
             'value' => uniqid()
         ];
     }
+
+    public function testGetMeasurement(): void
+    {
+        $sut = new EditRequest(
+            shopRequest: $requestMock = $this->createMock(Request::class),
+            nutritionFactsFactory: $this->createStub(NutritionFactsFactoryInterface::class)
+        );
+
+        $requestMock->method('getRequestParameter')
+            ->willReturnMap([
+                [EditRequest::REQUEST_KEY_MEASUREMENT, null, $measurement = uniqid()],
+                [EditRequest::REQUEST_KEY_MEASUREMENT_VALUES, null, $values = uniqid()],
+            ]);
+
+        $result = $sut->getMeasurement();
+
+        $this->assertSame($measurement, $result->getFormat());
+        $this->assertSame($values, $result->getValues());
+    }
 }
