@@ -14,7 +14,11 @@ interface FactsDataInterface
      */
     public function getNutritionFactsData(): array;
 
+    public function getMeasurementFormat(): string;
+
     public function getMeasurementValues(): string;
 
-    public function getMeasurementFormat(): string;
+    public function getAdditionalFormat(): string;
+
+    public function getAdditionalValues(): string;
 }

@@ -122,13 +122,18 @@ class EditRequestTest extends TestCase
 
         $requestMock->method('getRequestParameter')
             ->willReturnMap([
-                [EditRequest::REQUEST_KEY_MEASUREMENT, null, $measurement = uniqid()],
+                [EditRequest::REQUEST_KEY_MEASUREMENT, null, $measurementFormat = uniqid()],
                 [EditRequest::REQUEST_KEY_MEASUREMENT_VALUES, null, $values = uniqid()],
+                [EditRequest::REQUEST_KEY_ADDITIONAL_NOTE, null, $additionalNoteFormat = uniqid()],
+                [EditRequest::REQUEST_KEY_ADDITIONAL_NOTE_VALUES, null, $additionalNoteValues = uniqid()],
             ]);
 
-        $result = $sut->getMeasurement();
+        $measurement = $sut->getMeasurement();
+        $this->assertSame($measurementFormat, $measurement->getFormat());
+        $this->assertSame($values, $measurement->getValues());
 
-        $this->assertSame($measurement, $result->getFormat());
-        $this->assertSame($values, $result->getValues());
+        $additionalNote = $sut->getAdditionalNote();
+        $this->assertSame($additionalNoteFormat, $additionalNote->getFormat());
+        $this->assertSame($additionalNoteValues, $additionalNote->getValues());
     }
 }

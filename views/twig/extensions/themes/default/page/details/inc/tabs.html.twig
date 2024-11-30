@@ -3,6 +3,7 @@
 {% set productFacts = faGetProductFacts(oDetailsProduct.getId()) %}
 {% set nutritionFacts = productFacts.getNutritionFacts() %}
 {% set measurement = productFacts.getMeasurement() %}
+{% set additionalNote = productFacts.getAdditionalNote() %}
 
 {% set nutritionFactsTableContent %}
     {% if nutritionFacts.getCalories() %}
@@ -130,6 +131,12 @@
 
                 </tbody>
             </table>
+
+            {% if additionalNote.getFormat %}
+                <div class="nutrition_facts_additional_note">
+                    {{ translate({ ident: additionalNote.getFormat, args: additionalNote.getValues|split(";") }) }}
+                </div>
+            {% endif %}
         </div>
 
     {% endif %}

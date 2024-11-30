@@ -29,10 +29,12 @@ class NutritionFactsController extends AdminController
         $factsSettings = $this->getServiceFromContainer(FactsSettingsInterface::class);
 
         $this->addTplParam('measurementOptions', $factsSettings->getMeasurementOptions());
+        $this->addTplParam('additionalInformationOptions', $factsSettings->getAdditionalInformationOptions());
 
         $productFacts = $factsService->getProductFacts($editRequest->getProductId());
         $this->addTplParam('nutritionFacts', $productFacts->getNutritionFacts());
         $this->addTplParam('measurement', $productFacts->getMeasurement());
+        $this->addTplParam('additionalNote', $productFacts->getAdditionalNote());
 
         return parent::render();
     }

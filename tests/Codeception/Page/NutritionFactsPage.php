@@ -19,5 +19,11 @@ class NutritionFactsPage extends Page
     // Reference Intake
     public $nutritionFactsField = "//input[@name='nutritionFacts[%s]']";
 
+    public $measurementFormatField = "//select[@name='measurement']";
+    public $measurementFormatValuesField = "//input[@name='measurementValues']";
+
+    public $additionalNoteFormatField = "//select[@name='additionalNote']";
+    public $additionalNoteFormatValuesField = "//input[@name='additionalNoteValues']";
+
     public $nutritionFactsSaveButton = "//input[@name='saveData']";
 }

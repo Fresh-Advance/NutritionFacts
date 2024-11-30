@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\NutritionFacts\DataType;
 
-interface MeasurementInterface
+interface ValuesFormatPairInterface
 {
     public function getFormat(): string;
 

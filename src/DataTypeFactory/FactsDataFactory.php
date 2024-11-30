@@ -17,6 +17,7 @@ class FactsDataFactory implements FactsDataFactoryInterface
     {
         $nutritionFacts = $productFacts->getNutritionFacts();
         $measurement = $productFacts->getMeasurement();
+        $additionalNote = $productFacts->getAdditionalNote();
 
         return new FactsData(
             measurementFormat: $measurement->getFormat(),
@@ -32,7 +33,9 @@ class FactsDataFactory implements FactsDataFactoryInterface
                 'protein' => $nutritionFacts->getProtein(),
                 'cholesterol' => $nutritionFacts->getCholesterol(),
                 'sodium' => $nutritionFacts->getSodium(),
-            ]
+            ],
+            additionalFormat: $additionalNote->getFormat(),
+            additionalValues: $additionalNote->getValues(),
         );
     }
 }

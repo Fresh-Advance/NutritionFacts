@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\NutritionFacts\DataType;
 
-class Measurement implements MeasurementInterface
+class ValuesFormatPair implements ValuesFormatPairInterface
 {
     public function __construct(
         protected string $format,

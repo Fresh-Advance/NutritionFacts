@@ -48,7 +48,9 @@ class FactsDataAccessTest extends IntegrationTestCase
             nutritionFactsData: [
                 uniqid() => uniqid(),
                 uniqid() => uniqid(),
-            ]
+            ],
+            additionalFormat: uniqid(),
+            additionalValues: uniqid(),
         );
     }
 
@@ -57,5 +59,7 @@ class FactsDataAccessTest extends IntegrationTestCase
         $this->assertEquals($originalData->getNutritionFactsData(), $loadedData->getNutritionFactsData());
         $this->assertEquals($originalData->getMeasurementFormat(), $loadedData->getMeasurementFormat());
         $this->assertEquals($originalData->getMeasurementValues(), $loadedData->getMeasurementValues());
+        $this->assertEquals($originalData->getAdditionalFormat(), $loadedData->getAdditionalFormat());
+        $this->assertEquals($originalData->getAdditionalValues(), $loadedData->getAdditionalValues());
     }
 }

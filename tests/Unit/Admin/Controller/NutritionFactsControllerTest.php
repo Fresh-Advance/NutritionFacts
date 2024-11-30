@@ -11,7 +11,7 @@ namespace Admin\Controller;
 
 use FreshAdvance\NutritionFacts\Admin\Controller\NutritionFactsController;
 use FreshAdvance\NutritionFacts\Admin\Transput\EditRequestInterface;
-use FreshAdvance\NutritionFacts\DataType\MeasurementInterface;
+use FreshAdvance\NutritionFacts\DataType\ValuesFormatPairInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\ProductFactsInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactoryInterface;
@@ -36,12 +36,17 @@ class NutritionFactsControllerTest extends TestCase
         $factsServiceMock->method('getProductFacts')->with($productId)->willReturn(
             $this->createConfiguredMock(ProductFactsInterface::class, [
                 'getNutritionFacts' => $nutritionFactsStub = $this->createStub(NutritionFactsInterface::class),
-                'getMeasurement' => $measurementStub = $this->createStub(MeasurementInterface::class),
+                'getMeasurement' => $measurementStub = $this->createStub(ValuesFormatPairInterface::class),
+                'getAdditionalNote' => $additionalNoteStub = $this->createStub(ValuesFormatPairInterface::class),
             ])
         );
 
         $factsSettingsMock->method('getMeasurementOptions')->willReturn(
             $measurementOptions = [uniqid() => uniqid()]
+        );
+
+        $factsSettingsMock->method('getAdditionalInformationOptions')->willReturn(
+            $additionalInformationOptions = [uniqid() => uniqid()]
         );
 
         $sut->render();
@@ -50,6 +55,8 @@ class NutritionFactsControllerTest extends TestCase
         $this->assertSame($nutritionFactsStub, $viewParams['nutritionFacts']);
         $this->assertSame($measurementStub, $viewParams['measurement']);
         $this->assertSame($measurementOptions, $viewParams['measurementOptions']);
+        $this->assertSame($additionalNoteStub, $viewParams['additionalNote']);
+        $this->assertSame($additionalInformationOptions, $viewParams['additionalInformationOptions']);
     }
 
     public function testSave()

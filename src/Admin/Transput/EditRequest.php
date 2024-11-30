@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace FreshAdvance\NutritionFacts\Admin\Transput;
 
 use FreshAdvance\NutritionFacts\Admin\Exception\InvalidRequestParameterException;
-use FreshAdvance\NutritionFacts\DataType\Measurement;
-use FreshAdvance\NutritionFacts\DataType\MeasurementInterface;
+use FreshAdvance\NutritionFacts\DataType\ValuesFormatPair;
+use FreshAdvance\NutritionFacts\DataType\ValuesFormatPairInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactoryInterface;
 use OxidEsales\Eshop\Core\Request;
@@ -25,6 +25,9 @@ class EditRequest implements EditRequestInterface
 
     public const REQUEST_KEY_MEASUREMENT = 'measurement';
     public const REQUEST_KEY_MEASUREMENT_VALUES = 'measurementValues';
+
+    public const REQUEST_KEY_ADDITIONAL_NOTE = 'additionalNote';
+    public const REQUEST_KEY_ADDITIONAL_NOTE_VALUES = 'additionalNoteValues';
 
     public function __construct(
         protected Request $shopRequest,
@@ -49,9 +52,9 @@ class EditRequest implements EditRequestInterface
         return $this->nutritionFactsFactory->getFromArray($value);
     }
 
-    public function getMeasurement(): MeasurementInterface
+    public function getMeasurement(): ValuesFormatPairInterface
     {
-        return new Measurement(
+        return new ValuesFormatPair(
             format: $this->getStringParameter(self::REQUEST_KEY_MEASUREMENT),
             values: $this->getStringParameter(self::REQUEST_KEY_MEASUREMENT_VALUES),
         );
@@ -67,5 +70,13 @@ class EditRequest implements EditRequestInterface
         }
 
         return $value;
+    }
+
+    public function getAdditionalNote(): ValuesFormatPairInterface
+    {
+        return new ValuesFormatPair(
+            format: $this->getStringParameter(self::REQUEST_KEY_ADDITIONAL_NOTE),
+            values: $this->getStringParameter(self::REQUEST_KEY_ADDITIONAL_NOTE_VALUES),
+        );
     }
 }

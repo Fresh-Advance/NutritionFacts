@@ -9,14 +9,14 @@ declare(strict_types=1);
 
 namespace FreshAdvance\NutritionFacts\Tests\Unit\DataType;
 
-use FreshAdvance\NutritionFacts\DataType\Measurement;
+use FreshAdvance\NutritionFacts\DataType\ValuesFormatPair;
 use PHPUnit\Framework\TestCase;
 
-class MeasurementTest extends TestCase
+class ValuesFormatPairTest extends TestCase
 {
     public function testConstructor(): void
     {
-        $sut = new Measurement(
+        $sut = new ValuesFormatPair(
             format: $format = uniqid(),
             values: $values = uniqid(),
         );

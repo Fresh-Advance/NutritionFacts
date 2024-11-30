@@ -36,6 +36,8 @@ class FactsServiceTest extends TestCase
                 'getNutritionFactsData' => $nutritionFactsData = [uniqid() => uniqid()],
                 'getMeasurementFormat' => $measurementFormat = uniqid(),
                 'getMeasurementValues' => $measurementValues = uniqid(),
+                'getAdditionalFormat' => $additionalFormat = uniqid(),
+                'getAdditionalValues' => $additionalValues = uniqid(),
             ]));
 
         $nutrFactsFactoryMock->method('getFromArray')
@@ -49,6 +51,10 @@ class FactsServiceTest extends TestCase
         $measurement = $productFacts->getMeasurement();
         $this->assertSame($measurementFormat, $measurement->getFormat());
         $this->assertSame($measurementValues, $measurement->getValues());
+
+        $additionalNote = $productFacts->getAdditionalNote();
+        $this->assertSame($additionalFormat, $additionalNote->getFormat());
+        $this->assertSame($additionalValues, $additionalNote->getValues());
     }
 
     public function testSaveProductFacts(): void

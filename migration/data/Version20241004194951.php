@@ -25,6 +25,8 @@ final class Version20241004194951 extends AbstractMigration
                 measurement_format VARCHAR(255),
                 measurement_values VARCHAR(255), 
                 nutrition_facts TEXT,
+                additional_format VARCHAR(255),
+                additional_format_values VARCHAR(255),
                 PRIMARY KEY (product_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8"
         );

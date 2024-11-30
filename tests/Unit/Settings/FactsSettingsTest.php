@@ -28,6 +28,19 @@ class FactsSettingsTest extends TestCase
         $this->assertSame($expected, $sut->getMeasurementOptions());
     }
 
+    public function testGetAdditionalInformationOptions(): void
+    {
+        $sut = $this->getSut(
+            moduleSettingService: $settingsServiceMock = $this->createMock(ModuleSettingServiceInterface::class),
+        );
+
+        $settingsServiceMock->method('getCollection')
+            ->with(FactsSettings::SETTING_ADDITIONAL_INFORMATION_OPTIONS, Module::MODULE_ID)
+            ->willReturn($expected = [uniqid() => uniqid()]);
+
+        $this->assertSame($expected, $sut->getAdditionalInformationOptions());
+    }
+
     public function getSut(
         ModuleSettingServiceInterface $moduleSettingService = null,
     ): FactsSettingsInterface {

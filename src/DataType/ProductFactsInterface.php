@@ -13,5 +13,7 @@ interface ProductFactsInterface
 
     public function getNutritionFacts(): NutritionFactsInterface;
 
-    public function getMeasurement(): MeasurementInterface;
+    public function getMeasurement(): ValuesFormatPairInterface;
+
+    public function getAdditionalNote(): ValuesFormatPairInterface;
 }

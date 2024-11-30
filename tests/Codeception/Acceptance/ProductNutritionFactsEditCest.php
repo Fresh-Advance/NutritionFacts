@@ -94,6 +94,14 @@ final class ProductNutritionFactsEditCest
             $I->fillField(sprintf($nutritionsPage->nutritionFactsField, $oneField), md5($key . $oneField));
         }
 
+        $I->selectOption($nutritionsPage->measurementFormatField, 'FA_NUTRITION_FACTS_MEASUREMENT');
+        $I->seeInField($nutritionsPage->measurementFormatValuesField, '100g');
+        $I->fillField($nutritionsPage->measurementFormatValuesField, $measurementFormatValue = uniqid());
+
+        $I->selectOption($nutritionsPage->additionalNoteFormatField, 'FA_NUTRITION_FACTS_ADDITIONAL_EXAMPLE');
+        $I->seeInField($nutritionsPage->additionalNoteFormatValuesField, 'some value');
+        $I->fillField($nutritionsPage->additionalNoteFormatValuesField, $noteValue = uniqid());
+
         $I->click($nutritionsPage->nutritionFactsSaveButton);
         $I->waitForPageLoad();
 
@@ -101,5 +109,11 @@ final class ProductNutritionFactsEditCest
         foreach ($fields as $key => $oneField) {
             $I->seeInField(sprintf($nutritionsPage->nutritionFactsField, $oneField), md5($key . $oneField));
         }
+
+        $I->seeOptionIsSelected($nutritionsPage->measurementFormatField, Translator::translate('FA_NUTRITION_FACTS_MEASUREMENT'));
+        $I->seeInField($nutritionsPage->measurementFormatValuesField, $measurementFormatValue);
+
+        $I->seeOptionIsSelected($nutritionsPage->additionalNoteFormatField, Translator::translate('FA_NUTRITION_FACTS_ADDITIONAL_EXAMPLE'));
+        $I->seeInField($nutritionsPage->additionalNoteFormatValuesField, $noteValue);
     }
 }

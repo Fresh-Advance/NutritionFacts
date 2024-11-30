@@ -74,10 +74,12 @@ final class ProductNutritionFactsTabCest
             [
                 'product_id' => $this->articleId,
                 'measurement_format' => 'FA_NUTRITION_FACTS_MEASUREMENT',
-                'measurement_values' => '223k',
+                'measurement_values' => $measurementValues = uniqid(),
                 'nutrition_facts' => json_encode([
                     'calories' => '123',
                 ]),
+                'additional_format' => 'FA_NUTRITION_FACTS_ADDITIONAL_EXAMPLE',
+                'additional_format_values' => $additionalValues = uniqid(),
             ]
         );
 
@@ -87,7 +89,8 @@ final class ProductNutritionFactsTabCest
 
         $I->click(Translator::translate('FA_NUTRITION_FACTS_TAB'));
 
-        $I->see('Per 223k');
+        $I->see($measurementValues);
+        $I->see($additionalValues);
 
         $I->see(Translator::translate('FA_NUTRITION_FACTS_TABLE_ENERGY'));
         $I->see('123 kCal');

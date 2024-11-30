@@ -20,4 +20,5 @@ $aLang = [
     'FA_NUTRITION_FACTS_TABLE_PROTEIN' => 'Eiweiß',
 
     'FA_NUTRITION_FACTS_MEASUREMENT' => 'Pro %s',
+    'FA_NUTRITION_FACTS_ADDITIONAL_EXAMPLE' => 'Zusätzliches parametrisiertes Beispiel: %s',
 ];

@@ -17,7 +17,9 @@ class FactsData implements FactsDataInterface
     public function __construct(
         private string $measurementFormat = '',
         private string $measurementValues = '',
-        private array $nutritionFactsData = []
+        private array $nutritionFactsData = [],
+        private string $additionalFormat = '',
+        private string $additionalValues = '',
     ) {
     }
 
@@ -34,5 +36,15 @@ class FactsData implements FactsDataInterface
     public function getMeasurementValues(): string
     {
         return $this->measurementValues;
+    }
+
+    public function getAdditionalFormat(): string
+    {
+        return $this->additionalFormat;
+    }
+
+    public function getAdditionalValues(): string
+    {
+        return $this->additionalValues;
     }
 }

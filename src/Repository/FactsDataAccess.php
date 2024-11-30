@@ -37,6 +37,8 @@ class FactsDataAccess implements FactsDataAccessInterface
             measurementFormat: $returnResult['measurement_format'] ?? '',
             measurementValues: $returnResult['measurement_values'] ?? '',
             nutritionFactsData: $decodedResult,
+            additionalFormat: $returnResult['additional_format'] ?? '',
+            additionalValues: $returnResult['additional_format_values'] ?? ''
         );
     }
 
@@ -45,17 +47,23 @@ class FactsDataAccess implements FactsDataAccessInterface
         $encodedFacts = json_encode($factsData->getNutritionFactsData());
 
         $this->connection->executeQuery(
-            "INSERT INTO fa_nutrition_facts (product_id, measurement_format, measurement_values, nutrition_facts)
-            VALUES (:product_id, :measurement_format, :measurement_values, :nutrition_facts)
+            "INSERT INTO fa_nutrition_facts (product_id, measurement_format, measurement_values, nutrition_facts,
+                additional_format, additional_format_values)
+            VALUES (:product_id, :measurement_format, :measurement_values, :nutrition_facts,
+                :additional_format, :additional_format_values)
             ON DUPLICATE KEY UPDATE 
                 measurement_format = VALUES(measurement_format),
                 measurement_values = VALUES(measurement_values),
-                nutrition_facts = VALUES(nutrition_facts);",
+                nutrition_facts = VALUES(nutrition_facts),
+                additional_format = VALUES(additional_format),
+                additional_format_values = VALUES(additional_format_values);",
             [
                 'product_id' => $productId,
                 'measurement_format' => $factsData->getMeasurementFormat(),
                 'measurement_values' => $factsData->getMeasurementValues(),
                 'nutrition_facts' => $encodedFacts,
+                'additional_format' => $factsData->getAdditionalFormat(),
+                'additional_format_values' => $factsData->getAdditionalValues(),
             ]
         );
 

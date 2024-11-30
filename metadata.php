@@ -34,10 +34,18 @@ $aModule = [
     'settings' => [
         [
             'group' => 'fa_nutrition_facts_settings_edit',
-            'name' => \FreshAdvance\NutritionFacts\Settings\FactsSettings::SETTING_MEASUREMENT_OPTIONS_PARAMS,
+            'name' => \FreshAdvance\NutritionFacts\Settings\FactsSettings::SETTING_MEASUREMENT_OPTIONS,
             'type' => 'aarr',
             'value' => [
                 'FA_NUTRITION_FACTS_MEASUREMENT' => '100g',
+            ],
+        ],
+        [
+            'group' => 'fa_nutrition_facts_settings_edit',
+            'name' => \FreshAdvance\NutritionFacts\Settings\FactsSettings::SETTING_ADDITIONAL_INFORMATION_OPTIONS,
+            'type' => 'aarr',
+            'value' => [
+                'FA_NUTRITION_FACTS_ADDITIONAL_EXAMPLE' => 'some value',
             ],
         ],
     ],

@@ -15,7 +15,8 @@ use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServ
 class FactsSettings implements FactsSettingsInterface
 {
     public const SETTING_MEASUREMENT_OPTIONS = 'fa_nutrition_facts_MeasurementOptions';
-    public const SETTING_MEASUREMENT_OPTIONS_PARAMS = 'fa_nutrition_facts_MeasurementOptions';
+
+    public const SETTING_ADDITIONAL_INFORMATION_OPTIONS = 'fa_nutrition_facts_AdditionalInformationOptions';
 
     public function __construct(
         private ModuleSettingServiceInterface $moduleSettingService
@@ -26,6 +27,14 @@ class FactsSettings implements FactsSettingsInterface
     {
         return $this->moduleSettingService->getCollection(
             self::SETTING_MEASUREMENT_OPTIONS,
+            Module::MODULE_ID
+        );
+    }
+
+    public function getAdditionalInformationOptions(): array
+    {
+        return $this->moduleSettingService->getCollection(
+            self::SETTING_ADDITIONAL_INFORMATION_OPTIONS,
             Module::MODULE_ID
         );
     }

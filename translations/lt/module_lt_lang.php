@@ -20,4 +20,5 @@ $aLang = [
     'FA_NUTRITION_FACTS_TABLE_PROTEIN' => 'Baltymai',
 
     'FA_NUTRITION_FACTS_MEASUREMENT' => 'Per %s',
+    'FA_NUTRITION_FACTS_ADDITIONAL_EXAMPLE' => 'Papildomas parametrizuotas pavyzdys: %s',
 ];

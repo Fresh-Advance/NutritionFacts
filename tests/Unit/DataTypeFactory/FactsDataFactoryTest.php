@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace FreshAdvance\NutritionFacts\Tests\Unit\DataTypeFactory;
 
-use FreshAdvance\NutritionFacts\DataType\MeasurementInterface;
+use FreshAdvance\NutritionFacts\DataType\ValuesFormatPairInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\ProductFactsInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\FactsDataFactory;
@@ -22,7 +22,7 @@ class FactsDataFactoryTest extends TestCase
         $sut = new FactsDataFactory();
 
         $productFactsStub = $this->createConfiguredMock(ProductFactsInterface::class, [
-            'getMeasurement' => $this->createConfiguredMock(MeasurementInterface::class, [
+            'getMeasurement' => $this->createConfiguredMock(ValuesFormatPairInterface::class, [
                 'getFormat' => $measurementFormat = uniqid(),
                 'getValues' => $measurementFormatValues = uniqid(),
             ]),
@@ -37,7 +37,11 @@ class FactsDataFactoryTest extends TestCase
                 'getProtein' => $protein = uniqid(),
                 'getCholesterol' => $cholesterol = uniqid(),
                 'getSodium' => $sodium = uniqid(),
-            ])
+            ]),
+            'getAdditionalNote' => $this->createConfiguredMock(ValuesFormatPairInterface::class, [
+                'getFormat' => $additionalNoteFormat = uniqid(),
+                'getValues' => $additionalNoteFormatValues = uniqid(),
+            ]),
         ]);
 
         $result = $sut->getFromProductFacts($productFactsStub);
@@ -57,5 +61,8 @@ class FactsDataFactoryTest extends TestCase
 
         $this->assertSame($measurementFormat, $result->getMeasurementFormat());
         $this->assertSame($measurementFormatValues, $result->getMeasurementValues());
+
+        $this->assertSame($additionalNoteFormat, $result->getAdditionalFormat());
+        $this->assertSame($additionalNoteFormatValues, $result->getAdditionalValues());
     }
 }

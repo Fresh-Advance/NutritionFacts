@@ -26,6 +26,7 @@ class ProductFactsFactory implements ProductFactsFactoryInterface
             title: '',
             nutritionFacts: $this->editRequest->getNutritionFacts(),
             measurement: $this->editRequest->getMeasurement(),
+            additionalNote: $this->editRequest->getAdditionalNote(),
         );
     }
 }

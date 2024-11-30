@@ -15,7 +15,7 @@
 
     <div class="form-group">
         <label for="measurement">Measurement:</label>
-        <select id="measurement" name="measurement">
+        <select id="measurement" name="measurement" class="parametrizedOption">
             {% for key, value in measurementOptions %}
                 <option value="{{ key }}" data-default="{{ value }}"
                         {% if measurement.getFormat() == key %}selected{% endif %}>{{ translate({ ident: key }) }}</option>
@@ -23,19 +23,8 @@
         </select>
 
         <label for="measurementValues">Values:</label>
-        <input type="text" id="measurementValues" name="measurementValues" value="{{ measurement.getValues() }}">
+        <input type="text" id="measurementValues" name="measurementValues" class="parametrizedOptionValues" value="{{ measurement.getValues() }}">
     </div>
-
-    <script>
-        let measurementObject = document.getElementById('measurement');
-        measurementObject.addEventListener('change', function () {
-            var selected = this.options[this.selectedIndex];
-            document.getElementById('measurementValues').value = selected.getAttribute('data-default');
-        });
-        if (!document.getElementById('measurementValues').value) {
-            measurementObject.dispatchEvent(new Event('change'));
-        }
-    </script>
 
     <div class="form-group">
         <label for="calories">Calories (kCal)</label>
@@ -89,6 +78,36 @@
         <label for="sodium">Sodium</label>
         <input type="text" id="sodium" name="nutritionFacts[sodium]" value="{{ nutritionFacts.getSodium() }}">
     </div>
+
+    <div class="form-group">
+        <label for="additionalNote">Additional Note:</label>
+        <select id="additionalNote" name="additionalNote" class="parametrizedOption">
+            <option value=""></option>
+            {% for key, value in additionalInformationOptions %}
+                <option value="{{ key }}" data-default="{{ value }}"
+                        {% if additionalNote.getFormat() == key %}selected{% endif %}>{{ translate({ ident: key }) }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="additionalNoteValues">Values:</label>
+        <input type="text" id="additionalNoteValues" name="additionalNoteValues" class="parametrizedOptionValues" value="{{ additionalNote.getValues() }}">
+    </div>
+
+    <script>
+        let optionElements = document.getElementsByClassName('parametrizedOption');
+        Array.from(optionElements).forEach(function(element) {
+            let valuesElement = element.parentNode.querySelector('.parametrizedOptionValues');
+
+            element.addEventListener('change', function () {
+                let selected = element.options[this.selectedIndex];
+                valuesElement.value = selected.getAttribute('data-default');
+            })
+
+            if (!valuesElement.value) {
+                element.dispatchEvent(new Event('change'));
+            }
+        });
+    </script>
 
     <div><input type="submit" name="saveData" value="{{ translate({ ident: "FA_NUTRITION_FACTS_FORM_SAVE" }) }}"></div>
 </form>

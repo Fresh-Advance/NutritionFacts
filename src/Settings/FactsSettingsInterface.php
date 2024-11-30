@@ -13,4 +13,9 @@ interface FactsSettingsInterface
      * @return array<string, string>
      */
     public function getMeasurementOptions(): array;
+
+    /**
+     * @return array<string, string>
+     */
+    public function getAdditionalInformationOptions(): array;
 }

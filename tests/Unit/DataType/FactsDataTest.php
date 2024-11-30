@@ -31,10 +31,14 @@ class FactsDataTest extends TestCase
             measurementFormat: $measurementFormat = uniqid(),
             measurementValues: $measurementValues = uniqid(),
             nutritionFactsData: $exampleData,
+            additionalFormat: $additionalFormat = uniqid(),
+            additionalValues: $additionalValues = uniqid(),
         );
 
         $this->assertSame($exampleData, $sut->getNutritionFactsData());
         $this->assertSame($measurementFormat, $sut->getMeasurementFormat());
         $this->assertSame($measurementValues, $sut->getMeasurementValues());
+        $this->assertSame($additionalFormat, $sut->getAdditionalFormat());
+        $this->assertSame($additionalValues, $sut->getAdditionalValues());
     }
 }
