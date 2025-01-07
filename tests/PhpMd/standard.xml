@@ -14,16 +14,21 @@
         <properties>
             <property name="exceptions">
                 <value>
-                    \Symfony\Component\Filesystem\Path
+                    \Symfony\Component\Filesystem\Path,
+                    \OxidEsales\Codeception\Module\Translation\Translator,
+                    \Codeception\Util\Fixtures
                 </value>
             </property>
         </properties>
     </rule>
 
-    <rule ref="rulesets/codesize.xml" />
-    <rule ref="rulesets/design.xml" />
+    <rule ref="rulesets/codesize.xml"/>
+    <rule ref="rulesets/design.xml"/>
     <rule ref="rulesets/naming.xml">
-        <exclude name="LongVariable" />
+        <exclude name="LongVariable"/>
+        <exclude name="ShortVariable"/>
     </rule>
-    <rule ref="rulesets/unusedcode.xml" />
+    <rule ref="rulesets/unusedcode.xml"/>
+
+    <exclude-pattern>_generated</exclude-pattern>
 </ruleset>

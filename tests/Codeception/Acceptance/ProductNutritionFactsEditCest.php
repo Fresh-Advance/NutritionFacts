@@ -18,8 +18,8 @@ use OxidEsales\Codeception\Module\Translation\Translator;
 #[Group("fa_nutrition_facts")]
 final class ProductNutritionFactsEditCest
 {
-    private $articleId = 'justSomeOxArticleID';
-    private $articleArtNum = 'test_product_1';
+    private string $articleId = 'justSomeOxArticleID';
+    private string $articleArtNum = 'test_product_1';
 
     public function _before(AcceptanceTester $I)
     {
@@ -110,10 +110,16 @@ final class ProductNutritionFactsEditCest
             $I->seeInField(sprintf($nutritionsPage->nutritionFactsField, $oneField), md5($key . $oneField));
         }
 
-        $I->seeOptionIsSelected($nutritionsPage->measurementFormatField, Translator::translate('FA_NUTRITION_FACTS_MEASUREMENT'));
+        $I->seeOptionIsSelected(
+            $nutritionsPage->measurementFormatField,
+            Translator::translate('FA_NUTRITION_FACTS_MEASUREMENT')
+        );
         $I->seeInField($nutritionsPage->measurementFormatValuesField, $measurementFormatValue);
 
-        $I->seeOptionIsSelected($nutritionsPage->additionalNoteFormatField, Translator::translate('FA_NUTRITION_FACTS_ADDITIONAL_EXAMPLE'));
+        $I->seeOptionIsSelected(
+            $nutritionsPage->additionalNoteFormatField,
+            Translator::translate('FA_NUTRITION_FACTS_ADDITIONAL_EXAMPLE')
+        );
         $I->seeInField($nutritionsPage->additionalNoteFormatValuesField, $noteValue);
     }
 }

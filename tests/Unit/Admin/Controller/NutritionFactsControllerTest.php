@@ -11,9 +11,9 @@ namespace Admin\Controller;
 
 use FreshAdvance\NutritionFacts\Admin\Controller\NutritionFactsController;
 use FreshAdvance\NutritionFacts\Admin\Transput\EditRequestInterface;
-use FreshAdvance\NutritionFacts\DataType\ValuesFormatPairInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\ProductFactsInterface;
+use FreshAdvance\NutritionFacts\DataType\ValuesFormatPairInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactoryInterface;
 use FreshAdvance\NutritionFacts\Service\FactsServiceInterface;
 use FreshAdvance\NutritionFacts\Settings\FactsSettingsInterface;

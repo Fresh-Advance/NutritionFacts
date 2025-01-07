@@ -34,6 +34,9 @@ class NutritionFactsFactoryTest extends TestCase
         $this->assertEquals($output->getSodium(), $result->getSodium());
     }
 
+    /**
+     * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
+     */
     public function getFromArrayDataProvider(): \Generator
     {
         yield 'empty array' => [

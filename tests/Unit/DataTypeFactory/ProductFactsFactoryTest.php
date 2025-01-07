@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace FreshAdvance\NutritionFacts\Tests\Unit\DataTypeFactory;
 
 use FreshAdvance\NutritionFacts\Admin\Transput\EditRequestInterface;
-use FreshAdvance\NutritionFacts\DataType\ValuesFormatPairInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
+use FreshAdvance\NutritionFacts\DataType\ValuesFormatPairInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\ProductFactsFactory;
 use PHPUnit\Framework\TestCase;
 

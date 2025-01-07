@@ -49,7 +49,7 @@
         "phpcs": "phpcs --standard=tests/phpcs.xml",
         "phpcbf": "phpcbf --standard=tests/phpcs.xml",
         "phpstan": "phpstan -ctests/PhpStan/phpstan.neon analyse src/",
-        "phpmd": "phpmd src ansi tests/PhpMd/standard.xml",
+        "phpmd": "phpmd src,tests ansi tests/PhpMd/standard.xml",
         "static": [
             "@phpcs",
             "@phpstan",

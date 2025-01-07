@@ -10,10 +10,10 @@ declare(strict_types=1);
 namespace FreshAdvance\NutritionFacts\Tests\Codeception\Support;
 
 use Codeception\Util\Fixtures;
+use FreshAdvance\NutritionFacts\Tests\Codeception\Support\_generated\AcceptanceTesterActions;
 use OxidEsales\Codeception\Admin\AdminLoginPage;
 use OxidEsales\Codeception\Admin\AdminPanel;
 use OxidEsales\Codeception\Page\Home;
-use FreshAdvance\NutritionFacts\Tests\Codeception\Support\_generated\AcceptanceTesterActions;
 
 final class AcceptanceTester extends \Codeception\Actor
 {

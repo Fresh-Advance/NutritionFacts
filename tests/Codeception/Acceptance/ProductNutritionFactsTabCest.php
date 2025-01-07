@@ -11,7 +11,6 @@ namespace Acceptance;
 
 use Codeception\Attribute\Group;
 use DateTime;
-use FreshAdvance\NutritionFacts\Tests\Codeception\Page\NutritionFactsPage;
 use FreshAdvance\NutritionFacts\Tests\Codeception\Support\AcceptanceTester;
 use OxidEsales\Codeception\Module\Translation\Translator;
 use OxidEsales\Codeception\Page\Details\ProductDetails;

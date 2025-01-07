@@ -32,13 +32,15 @@ class FactsServiceTest extends TestCase
 
         $factsDataAccessMock->method('getFactsData')
             ->with($productId)
-            ->willReturn($this->createConfiguredMock(FactsDataInterface::class, [
-                'getNutritionFactsData' => $nutritionFactsData = [uniqid() => uniqid()],
-                'getMeasurementFormat' => $measurementFormat = uniqid(),
-                'getMeasurementValues' => $measurementValues = uniqid(),
-                'getAdditionalFormat' => $additionalFormat = uniqid(),
-                'getAdditionalValues' => $additionalValues = uniqid(),
-            ]));
+            ->willReturn(
+                $this->createConfiguredMock(FactsDataInterface::class, [
+                    'getNutritionFactsData' => $nutritionFactsData = [uniqid() => uniqid()],
+                    'getMeasurementFormat' => $measurementFormat = uniqid(),
+                    'getMeasurementValues' => $measurementValues = uniqid(),
+                    'getAdditionalFormat' => $additionalFormat = uniqid(),
+                    'getAdditionalValues' => $additionalValues = uniqid(),
+                ])
+            );
 
         $nutrFactsFactoryMock->method('getFromArray')
             ->with($nutritionFactsData)

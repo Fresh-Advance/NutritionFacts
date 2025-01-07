@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace FreshAdvance\NutritionFacts\Tests\Unit\DataType;
 
-use FreshAdvance\NutritionFacts\DataType\ValuesFormatPairInterface;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataType\ProductFacts;
+use FreshAdvance\NutritionFacts\DataType\ValuesFormatPairInterface;
 use PHPUnit\Framework\TestCase;
 
 class ProductFactsTest extends TestCase
