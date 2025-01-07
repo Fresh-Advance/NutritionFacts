@@ -54,7 +54,7 @@ sonarcloud:
   project_name: 'NutritionFacts'
   project_key: 'Fresh-Advance_NutritionFacts'
   organization: 'fresh-advance'
-  parameters: |
+  parameters: >
     -Dsonar.language=php
     -Dsonar.scm.provider=git
     -Dsonar.sources=src
