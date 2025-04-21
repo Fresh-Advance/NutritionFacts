@@ -10,17 +10,18 @@ declare(strict_types=1);
 namespace FreshAdvance\NutritionFacts\Tests\Integration;
 
 use OxidEsales\EshopCommunity\Tests\Integration\IntegrationTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class ServiceAvailabilityTest extends IntegrationTestCase
 {
-    /** @dataProvider serviceAvailabilityDataProvider */
+    #[DataProvider('serviceAvailabilityDataProvider')]
     public function testServiceAvailability(string $serviceName): void
     {
         $service = $this->get($serviceName);
         $this->assertInstanceOf($serviceName, $service);
     }
 
-    public function serviceAvailabilityDataProvider(): array
+    public static function serviceAvailabilityDataProvider(): array
     {
         return [
             [\FreshAdvance\NutritionFacts\Admin\Transput\EditRequestInterface::class],

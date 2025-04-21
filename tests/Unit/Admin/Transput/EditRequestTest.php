@@ -14,6 +14,7 @@ use FreshAdvance\NutritionFacts\Admin\Transput\EditRequest;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactoryInterface;
 use OxidEsales\Eshop\Core\Request;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class EditRequestTest extends TestCase
@@ -34,7 +35,7 @@ class EditRequestTest extends TestCase
         $this->assertSame($exampleProductId, $sut->getProductId());
     }
 
-    /** @dataProvider wrongProductIdValuesDataProvider */
+    #[DataProvider('wrongProductIdValuesDataProvider')]
     public function testGetProductIdWithWrongDataThrowsException(mixed $value): void
     {
         $requestMock = $this->createStub(Request::class);
@@ -51,7 +52,7 @@ class EditRequestTest extends TestCase
         $sut->getProductId();
     }
 
-    public function wrongProductIdValuesDataProvider(): \Generator
+    public static function wrongProductIdValuesDataProvider(): \Generator
     {
         yield 'null' => [
             'value' => null
@@ -85,7 +86,7 @@ class EditRequestTest extends TestCase
         $this->assertSame($expectedFacts, $sut->getNutritionFacts());
     }
 
-    /** @dataProvider wrongNutritionFactsValuesDataProvider */
+    #[DataProvider('wrongNutritionFactsValuesDataProvider')]
     public function testGetNutritionFactsWithWrongDataThrowsException(mixed $value): void
     {
         $requestMock = $this->createStub(Request::class);
@@ -102,7 +103,7 @@ class EditRequestTest extends TestCase
         $sut->getNutritionFacts();
     }
 
-    public function wrongNutritionFactsValuesDataProvider(): \Generator
+    public static function wrongNutritionFactsValuesDataProvider(): \Generator
     {
         yield 'null' => [
             'value' => null

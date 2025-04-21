@@ -12,11 +12,12 @@ namespace FreshAdvance\NutritionFacts\Tests\Unit\DataTypeFactory;
 use FreshAdvance\NutritionFacts\DataType\NutritionFacts;
 use FreshAdvance\NutritionFacts\DataType\NutritionFactsInterface;
 use FreshAdvance\NutritionFacts\DataTypeFactory\NutritionFactsFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class NutritionFactsFactoryTest extends TestCase
 {
-    /** @dataProvider getFromArrayDataProvider */
+    #[DataProvider('getFromArrayDataProvider')]
     public function testGetFromArray(array $input, NutritionFactsInterface $output): void
     {
         $sut = new NutritionFactsFactory();
@@ -37,7 +38,7 @@ class NutritionFactsFactoryTest extends TestCase
     /**
      * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
      */
-    public function getFromArrayDataProvider(): \Generator
+    public static function getFromArrayDataProvider(): \Generator
     {
         yield 'empty array' => [
             'input' => [],
