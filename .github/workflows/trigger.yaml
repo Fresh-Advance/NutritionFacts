@@ -4,7 +4,7 @@ name: Auto trigger on push or pull requests
 on:
   push:
     branches:
-      - 'b-7.0.x**'
+      - 'b-7.1.x**'
 
 jobs:
   php81_mysql80:

@@ -1,6 +1,6 @@
 # Nutrition facts module for OXID eShop
 
-[![Development](https://github.com/Fresh-Advance/NutritionFacts/actions/workflows/trigger.yaml/badge.svg?branch=b-7.0.x)](https://github.com/Fresh-Advance/NutritionFacts/actions/workflows/trigger.yaml)
+[![Development](https://github.com/Fresh-Advance/NutritionFacts/actions/workflows/trigger.yaml/badge.svg?branch=b-7.1.x)](https://github.com/Fresh-Advance/NutritionFacts/actions/workflows/trigger.yaml)
 [![Latest Version](https://img.shields.io/packagist/v/Fresh-Advance/NutritionFacts?logo=composer&label=latest&include_prereleases&color=orange)](https://packagist.org/packages/Fresh-Advance/NutritionFacts)
 [![PHP Version](https://img.shields.io/packagist/php-v/Fresh-Advance/NutritionFacts)](https://github.com/Fresh-Advance/NutritionFacts)
 
@@ -34,6 +34,7 @@ OXID eShop 7 Product nutrition facts module gives you a possibility to add a nut
 
 ## Compatibility
 
+* Branch b-7.1.x is compatible with OXID Shop compilation 7.1.x and up
 * Branch b-7.0.x is compatible with OXID Shop compilation 7.0.0-rc.2 and up
 
 ## Installation
