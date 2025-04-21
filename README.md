@@ -27,6 +27,11 @@ OXID eShop 7 Product nutrition facts module gives you a possibility to add a nut
 * Possibility to describe the measurement unit for each product
 * Possibility to add additional information to the nutrition facts table
 
+## Interface
+
+![image](https://github.com/user-attachments/assets/8f2efdeb-7db9-4c52-a251-4ae3cfcf20f9)
+![image](https://github.com/user-attachments/assets/4f4c1074-d003-41eb-a3c8-1efe66d69a42)
+
 ## Compatibility
 
 * Branch b-7.0.x is compatible with OXID Shop compilation 7.0.0-rc.2 and up
