@@ -12,7 +12,7 @@ namespace FreshAdvance\NutritionFacts\DataType;
 class NutritionFacts implements NutritionFactsInterface
 {
     /**
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList) This is a data class so may have a lot of parameters.
+     * @SuppressWarnings(PHPMD) This is a data class so may have a lot of parameters.
      */
     public function __construct(
         private string $calories = '',

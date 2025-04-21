@@ -25,17 +25,23 @@ class FactsSettings implements FactsSettingsInterface
 
     public function getMeasurementOptions(): array
     {
-        return $this->moduleSettingService->getCollection(
+        /** @var array<string, string> $value */
+        $value = $this->moduleSettingService->getCollection(
             self::SETTING_MEASUREMENT_OPTIONS,
             Module::MODULE_ID
         );
+
+        return $value;
     }
 
     public function getAdditionalInformationOptions(): array
     {
-        return $this->moduleSettingService->getCollection(
+        /** @var array<string, string> $value */
+        $value = $this->moduleSettingService->getCollection(
             self::SETTING_ADDITIONAL_INFORMATION_OPTIONS,
             Module::MODULE_ID
         );
+
+        return $value;
     }
 }
