@@ -9,7 +9,7 @@
     {% if nutritionFacts.getCalories() %}
         <tr>
             <td>{{ translate({ ident: "FA_NUTRITION_FACTS_TABLE_ENERGY" }) }}</td>
-            <td>{{ nutritionFacts.getCalories() }} kCal / {{ nutritionFacts.getCalories() * 4.184 }} kJ</td>
+            <td>{{ nutritionFacts.getCalories() }} kCal / {{ (nutritionFacts.getCalories() * 4.184)|round(0, 'ceil') }} kJ</td>
         </tr>
     {% endif %}
 
