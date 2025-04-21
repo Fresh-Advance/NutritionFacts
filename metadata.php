@@ -22,7 +22,7 @@ $aModule = [
         'en' => 'Nutrition Facts module for OXID eShop.',
     ],
     'thumbnail' => 'logo.png',
-    'version' => '0.1.0',
+    'version' => '1.0.0',
     'author' => 'Anton Fedurtsya',
     'email' => 'anton@fedurtsya.com',
     'url' => 'https://github.com/Fresh-Advance',
