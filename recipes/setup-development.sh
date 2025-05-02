@@ -35,8 +35,6 @@ perl -pi\
 mkdir source
 docker compose up --build -d php
 
-git clone https://github.com/Fresh-Advance/NutritionFacts.git ./source -b b-7.1.x
-
 $SCRIPT_PATH/parts/shared/require_shop_edition_packages.sh -e"${edition}" -v"dev-b-7.1.x"
 $SCRIPT_PATH/parts/shared/require_twig_components.sh -e"CE" -b"b-7.1.x"
 $SCRIPT_PATH/parts/shared/require.sh -n"oxid-esales/developer-tools" -v"dev-b-7.1.x"
